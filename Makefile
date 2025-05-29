@@ -1,7 +1,7 @@
-make start:
-		npx start-server /build
-make build:
-		npm run build
+start:
+	npx start-server /build
+build:
+	npm run build
 
 
 
