@@ -1,4 +1,4 @@
-import errorPage from '../assets/404.png'
+import errorPage from '../assets/404.svg'
 import { Link } from 'react-router-dom'
 
 const NotFoundPage = () => {
