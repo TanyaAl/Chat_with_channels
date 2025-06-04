@@ -1,7 +1,8 @@
-start:
-	npx start-server /build
-build:
-	npm run /dist
+start-backend:
+	npx start-server -s ./frontend/dist
+start-frontend:
+	cd frontend && npm run dev
+ 
 
 
 
