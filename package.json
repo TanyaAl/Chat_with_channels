@@ -10,8 +10,10 @@
   "license": "ISC",
   "dependencies": {
     "@hexlet/chat-server": "^2.0.4",
+    "@reduxjs/toolkit": "^2.8.2",
     "bootstrap": "^5.3.6",
     "formik": "^2.4.6",
+    "react-redux": "^9.2.0",
     "react-router-dom": "^7.6.2",
     "yup": "^1.6.1"
   },
