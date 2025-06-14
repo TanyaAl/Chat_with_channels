@@ -2,10 +2,14 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 // import { Form, Button } from 'react-bootstrap';
 // import { useFormik } from 'formik';
+import { actions as commentsActions } from '../../store/commentsSlice.js';
+import { actions as channelsActions } from '../../store/channelsSlice.js';
 
 const getAuthHeader = () => {
   const user = JSON.parse(localStorage.getItem('user'));
   console.log('userId', user);
+  console.log('comments', commentsActions);
+  console.log('channels', channelsActions);
 
   if (user && user.token) {
     return { Authorization: `Bearer ${user.token}` };
