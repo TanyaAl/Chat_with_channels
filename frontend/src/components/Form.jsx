@@ -21,7 +21,7 @@ const FormPage = () => {
           password: values.password,
         });
         console.log('response', response);
-        localStorage.setItem('token', JSON.stringify(response.data));
+        localStorage.setItem('user', JSON.stringify(response.data));
         navigate('/');
       } catch (err) {
         formik.setErrors({ auth: 'Неверные имя пользователя или пароль' });

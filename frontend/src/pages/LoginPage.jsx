@@ -1,7 +1,7 @@
-import mainPage from '../assets/avatar.jpg';
+import loginPage from '../assets/avatar.jpg';
 import FormPage from '../components/Form';
 
-const MainPage = () => {
+const LoginPage = () => {
   return (
     <div className="d-flex flex-column h-100">
       <nav className="shadow-sm navbar navbar-expand-lg navbar-light bg-white">
@@ -17,7 +17,7 @@ const MainPage = () => {
             <div className="card shadow-sm">
               <div className="card-body row p-5">
                 <div className="col-12 col-md-6">
-                  <img alt="avatar" src={mainPage} />
+                  <img alt="avatar" src={loginPage} />
                 </div>
                 <div className="col-12 col-md-6">
                   <FormPage />
@@ -36,4 +36,4 @@ const MainPage = () => {
     </div>
   );
 };
-export default MainPage;
+export default LoginPage;
