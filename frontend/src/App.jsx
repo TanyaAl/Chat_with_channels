@@ -1,6 +1,7 @@
 import LoginPage from './pages/LoginPage';
 import ChatPage from './pages/ChatPage';
 import NotFoundPage from './pages/NotFoundPage';
+import NavBar from './components/NavBar.jsx';
 import { useState, useEffect } from 'react';
 import {
   BrowserRouter,
@@ -14,19 +15,24 @@ import useAuth from './hooks/index.jsx';
 
 const AuthProvider = ({ children }) => {
   const [loggedIn, setLoggedIn] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const userId = JSON.parse(localStorage.getItem('user'));
     if (userId && userId.token) {
       setLoggedIn(true);
     }
+    setIsLoading(false);
   }, []);
   const logIn = () => setLoggedIn(true);
   const logOut = () => {
     localStorage.removeItem('user');
     setLoggedIn(false);
   };
-
+  console.log('isLoading', isLoading);
+  if (isLoading) {
+    return <div>Загрузка...</div>;
+  }
   return (
     <AuthContext.Provider value={{ loggedIn, logIn, logOut }}>
       {children}
@@ -49,6 +55,7 @@ const App = () => {
   return (
     <AuthProvider>
       <BrowserRouter>
+        <NavBar />
         <Routes>
           <Route
             path="/"
