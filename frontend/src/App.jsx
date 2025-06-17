@@ -29,7 +29,6 @@ const AuthProvider = ({ children }) => {
     localStorage.removeItem('user');
     setLoggedIn(false);
   };
-  console.log('isLoading', isLoading);
   if (isLoading) {
     return <div>Загрузка...</div>;
   }

@@ -5,11 +5,10 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import useAuth from '../hooks/index.jsx';
 
-const FormPage = () => {
+const FormLogin = () => {
   const inputEl = useRef(null);
   const navigate = useNavigate();
   const auth = useAuth();
-  console.log('auth', auth);
 
   useEffect(() => {
     inputEl.current.focus();
@@ -23,10 +22,8 @@ const FormPage = () => {
           username: values.username,
           password: values.password,
         });
-        console.log('response', response);
         localStorage.setItem('user', JSON.stringify(response.data));
         auth.logIn();
-        console.log('stateAuth', auth.loggedIn);
         navigate('/');
       } catch (err) {
         formik.setErrors({ auth: 'Неверные имя пользователя или пароль' });
@@ -83,4 +80,4 @@ const FormPage = () => {
   );
 };
 
-export default FormPage;
+export default FormLogin;

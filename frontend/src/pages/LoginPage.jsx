@@ -1,5 +1,5 @@
 import loginPage from '../assets/avatar.jpg';
-import FormPage from '../components/Form';
+import FormLogin from '../components/FormLogin';
 
 const LoginPage = () => {
   return (
@@ -13,7 +13,7 @@ const LoginPage = () => {
                   <img alt="avatar" src={loginPage} />
                 </div>
                 <div className="col-12 col-md-6">
-                  <FormPage />
+                  <FormLogin />
                 </div>
               </div>
               <div className="card-footer p-4">

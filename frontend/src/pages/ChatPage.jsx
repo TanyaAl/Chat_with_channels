@@ -1,16 +1,13 @@
 import axios from 'axios';
-import { useEffect, useState } from 'react';
-// import { Form, Button } from 'react-bootstrap';
-// import { useFormik } from 'formik';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { actions as commentsActions } from '../../store/commentsSlice.js';
-import { actions as channelsActions } from '../../store/channelsSlice.js';
+import { actions as channelActions } from '../../store/channelsSlice.js';
+import { actions as activeChannelIdActions } from '../../store/activeChannelSlice.js';
+import Channels from '../components/Channels.jsx';
 
 const getAuthHeader = () => {
   const user = JSON.parse(localStorage.getItem('user'));
-  console.log('userId', user);
-  console.log('comments', commentsActions);
-  console.log('channels', channelsActions);
-
   if (user && user.token) {
     return { Authorization: `Bearer ${user.token}` };
   }
@@ -19,23 +16,28 @@ const getAuthHeader = () => {
 };
 
 const ChatPage = () => {
-  const [data, setData] = useState([]);
+  const dispatch = useDispatch();
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('/api/v1/channels', {
+        const responseChannels = await axios.get('/api/v1/channels', {
           headers: getAuthHeader(),
         });
-        console.log('responsePrivate', response.data);
-        setData(response.data);
+        dispatch(channelActions.setChannels(responseChannels.data));
+        dispatch(activeChannelIdActions.setActiveChannelId(1));
+
+        const responseComments = await axios.get('/api/v1/comments', {
+          headers: getAuthHeader(),
+        });
+        dispatch(commentsActions.setComments(responseComments.data));
       } catch (err) {
         console.error('Ошибка запроса:', err);
       }
     };
 
     fetchData();
-  }, []);
-  console.log('data', data);
+  }, [dispatch]);
+
   return (
     <div className="container h-100 my-4 overflow-hidden rounded shadow">
       <div className="row h-100 bg-white flex-md-row">
@@ -52,13 +54,15 @@ const ChatPage = () => {
           <ul
             id="channels-box"
             className="nav flex-column nav-pills nav-fill px-2 mb-3 overflow-auto h-100 d-block"
-          ></ul>
+          >
+            <Channels />
+          </ul>
         </div>
         <div className="col p-0 h-100">
           <div className="d-flex flex-column h-100">
             <div className="bg-light mb-4 p-3 shadow-sm small">
               <p className="m-0">
-                <b># random</b>
+                <b># </b>
               </p>
               <span className="text-muted">0 сообщений</span>
             </div>
