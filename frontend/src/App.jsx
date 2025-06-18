@@ -2,7 +2,6 @@ import LoginPage from './pages/LoginPage';
 import ChatPage from './pages/ChatPage';
 import NotFoundPage from './pages/NotFoundPage';
 import NavBar from './components/NavBar.jsx';
-import ChatMain from './components/ChatMain.jsx';
 import { useState, useEffect } from 'react';
 import {
   BrowserRouter,
@@ -55,8 +54,8 @@ const App = () => {
   return (
     <AuthProvider>
       <BrowserRouter>
-        <NavBar />
-        <ChatMain>
+        <div className="d-flex flex-column h-100">
+          <NavBar />
           <Routes>
             <Route
               path="/"
@@ -69,7 +68,7 @@ const App = () => {
             <Route path="*" element={<NotFoundPage />} />
             <Route path="/login" element={<LoginPage />} />
           </Routes>
-        </ChatMain>
+        </div>
       </BrowserRouter>
     </AuthProvider>
   );
