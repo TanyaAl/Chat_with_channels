@@ -2,6 +2,7 @@ import LoginPage from './pages/LoginPage';
 import ChatPage from './pages/ChatPage';
 import NotFoundPage from './pages/NotFoundPage';
 import NavBar from './components/NavBar.jsx';
+import ChatMain from './components/ChatMain.jsx';
 import { useState, useEffect } from 'react';
 import {
   BrowserRouter,
@@ -55,18 +56,20 @@ const App = () => {
     <AuthProvider>
       <BrowserRouter>
         <NavBar />
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <PrivateRoute>
-                <ChatPage />
-              </PrivateRoute>
-            }
-          />
-          <Route path="*" element={<NotFoundPage />} />
-          <Route path="/login" element={<LoginPage />} />
-        </Routes>
+        <ChatMain>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <PrivateRoute>
+                  <ChatPage />
+                </PrivateRoute>
+              }
+            />
+            <Route path="*" element={<NotFoundPage />} />
+            <Route path="/login" element={<LoginPage />} />
+          </Routes>
+        </ChatMain>
       </BrowserRouter>
     </AuthProvider>
   );
