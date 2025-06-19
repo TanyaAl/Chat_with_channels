@@ -1,16 +1,18 @@
 import Channels from './Channels';
+import { Button } from 'react-bootstrap';
 
 const ChannelsSideBar = () => {
   return (
     <div className="border-end px-0 bg-light flex-column h-100 d-flex">
       <div className="d-flex mt-1 justify-content-between mb-2 ps-4 pe-2 p-4">
         <b>Каналы</b>
-        <button
+        <Button
           type="button"
-          className="p-0 text-primary btn btn-group-vertical"
+          className="p-0 bg-white border border-light text-primary"
         >
-          <span>+</span>
-        </button>
+          <i className="bi bi-plus-square"></i>
+          <span className="visually-hidden">+</span>
+        </Button>
       </div>
       <ul
         id="channels-box"
