@@ -1,19 +1,12 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { actions as commentsActions } from '../../store/commentsSlice.js';
+import { actions as messagesActions } from '../../store/messagesSlice.js';
 import { actions as channelActions } from '../../store/channelsSlice.js';
 import { actions as activeChannelIdActions } from '../../store/activeChannelSlice.js';
 import ChatMain from '../components/ChatMain.jsx';
 import Waiting from '../components/Spinner.jsx';
-
-const getAuthHeader = () => {
-  const user = JSON.parse(localStorage.getItem('user'));
-  if (user && user.token) {
-    return { Authorization: `Bearer ${user.token}` };
-  }
-  return {};
-};
+import getAuthHeader from '../../utils/auth.js';
 
 const ChatPage = () => {
   const dispatch = useDispatch();
@@ -34,10 +27,10 @@ const ChatPage = () => {
           );
         }
 
-        const responseComments = await axios.get('/api/v1/comments', {
+        const responseMessages = await axios.get('/api/v1/messages', {
           headers: getAuthHeader(),
         });
-        dispatch(commentsActions.setComments(responseComments.data));
+        dispatch(messagesActions.setMessages(responseMessages.data));
         setLoading(false);
       } catch (err) {
         console.error('Ошибка запроса:', err);

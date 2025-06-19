@@ -1,17 +1,38 @@
 import { useFormik } from 'formik';
 import { Form, Button } from 'react-bootstrap';
 import { useRef, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { actions as messagesActions } from '../../store/messagesSlice';
+import getAuthHeader from '../../utils/auth';
+import axios from 'axios';
 
 const FormForComment = () => {
   const inputEl = useRef(null);
+  const dispatch = useDispatch();
+  const activeChannel = useSelector(
+    (state) => state.activeChannelReducer.activeChannelId,
+  );
   useEffect(() => inputEl.current.focus(), []);
+  const user = JSON.parse(localStorage.getItem('user'));
 
   const formik = useFormik({
     initialValues: {
       body: '',
+      channelId: null,
+      username: null,
     },
-    onSubmit: (values) => {
-      console.log(values);
+    onSubmit: async (values) => {
+      const message = {
+        body: values.body,
+        channelId: activeChannel,
+        username: user.username,
+      };
+      console.log('MESSAGE', message);
+      const responseMessage = await axios.post('/api/v1/messages', message, {
+        headers: getAuthHeader(),
+      });
+      console.log('RESPONSEMESSAGE', responseMessage);
+      dispatch(messagesActions.addMessage(responseMessage.data));
       formik.resetForm();
     },
   });

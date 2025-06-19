@@ -1,4 +1,5 @@
 import FormForComment from './FormForComment';
+import Messages from './Messages';
 
 const MessagesBox = () => {
   return (
@@ -6,7 +7,9 @@ const MessagesBox = () => {
       <div
         id="messages-box"
         className="chat-messages flex-grow-1 overflow-auto px-5"
-      ></div>
+      >
+        <Messages />
+      </div>
       <div className="mt-auto px-5 py-3">
         <FormForComment />
       </div>
