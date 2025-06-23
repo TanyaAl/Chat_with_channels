@@ -1,6 +1,7 @@
 import LoginPage from './pages/LoginPage';
 import ChatPage from './pages/ChatPage';
 import NotFoundPage from './pages/NotFoundPage';
+import SignUpPage from './pages/SignUpPage.jsx';
 import NavBar from './components/NavBar.jsx';
 import { useState, useEffect } from 'react';
 import {
@@ -67,6 +68,7 @@ const App = () => {
             />
             <Route path="*" element={<NotFoundPage />} />
             <Route path="/login" element={<LoginPage />} />
+            <Route path="/signup" element={<SignUpPage />} />
           </Routes>
         </div>
       </BrowserRouter>
