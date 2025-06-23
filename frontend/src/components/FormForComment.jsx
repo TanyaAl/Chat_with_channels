@@ -1,14 +1,14 @@
 import { useFormik } from 'formik';
 import { Form, Button } from 'react-bootstrap';
 import { useRef, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { actions as messagesActions } from '../../store/messagesSlice';
+import { useSelector } from 'react-redux';
+// import { actions as messagesActions } from '../../store/messagesSlice';
 import getAuthHeader from '../../utils/auth';
 import axios from 'axios';
 
 const FormForComment = () => {
   const inputEl = useRef(null);
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const activeChannel = useSelector(
     (state) => state.activeChannelReducer.activeChannelId,
   );
@@ -32,7 +32,7 @@ const FormForComment = () => {
         headers: getAuthHeader(),
       });
       console.log('RESPONSEMESSAGE', responseMessage);
-      dispatch(messagesActions.addMessage(responseMessage.data));
+      // dispatch(messagesActions.addMessage(responseMessage.data));
       formik.resetForm();
     },
   });
