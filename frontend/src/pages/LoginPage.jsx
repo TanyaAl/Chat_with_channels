@@ -9,8 +9,12 @@ const LoginPage = () => {
           <div className="col-12 col-md-8 col-xxl-6">
             <div className="card shadow-sm">
               <div className="card-body row p-5">
-                <div className="col-12 col-md-6">
-                  <img alt="avatar" src={loginPage} />
+                <div className="col-12 col-md-6 d-flex justify-content-center align-items-center">
+                  <img
+                    alt="avatar"
+                    className="rounded-circle"
+                    src={loginPage}
+                  />
                 </div>
                 <div className="col-12 col-md-6">
                   <FormLogin />

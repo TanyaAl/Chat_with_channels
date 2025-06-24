@@ -21,10 +21,13 @@ const FormSignUp = () => {
           <Form onSubmit={formik.handleSubmit} className="p-3">
             <fieldset>
               <Form.Group>
-                <Form.Label htmlFor="username">Ник</Form.Label>
+                <Form.Label className="visually-hidden" htmlFor="username">
+                  Ник
+                </Form.Label>
                 <Form.Control
+                  className="mb-3"
                   onChange={formik.handleChange}
-                  placeholder="username"
+                  placeholder="Ваш ник"
                   value={formik.values.username}
                   ref={inputEl}
                   type="text"
@@ -33,10 +36,13 @@ const FormSignUp = () => {
                 />
               </Form.Group>
               <Form.Group>
-                <Form.Label htmlFor="password">Пароль</Form.Label>
+                <Form.Label className="visually-hidden" htmlFor="password">
+                  Пароль
+                </Form.Label>
                 <Form.Control
+                  className="mb-3"
                   onChange={formik.handleChange}
-                  placeholder="password"
+                  placeholder="Пароль"
                   value={formik.values.password}
                   type="password"
                   name="password"
@@ -44,17 +50,19 @@ const FormSignUp = () => {
                 />
               </Form.Group>
               <Form.Group>
-                <Form.Label htmlFor="password">Пароль</Form.Label>
+                <Form.Label className="visually-hidden" htmlFor="password">
+                  Пароль
+                </Form.Label>
                 <Form.Control
                   onChange={formik.handleChange}
-                  placeholder="password"
+                  placeholder="Повторите пароль"
                   value={formik.values.password}
                   type="password"
                   name="password"
                   required
                 />
               </Form.Group>
-              <Button type="submit" className="w-100 mb-3 mt-3 btn btn-primary">
+              <Button type="submit" className="w-100 mb-3 mt-4 btn btn-primary">
                 Войти
               </Button>
             </fieldset>
