@@ -4,7 +4,7 @@ import { actions as modalsActions } from '../../../store/modalsSlice';
 
 const ModalRenderer = () => {
   const dispatch = useDispatch();
-  const modal = useSelector((state) => state.modalsReducer.modals);
+  const modal = useSelector((state) => state.modalsReducer);
   console.log(modal);
   const { type, isOpen, data } = modal;
   const Modal = modals(type);

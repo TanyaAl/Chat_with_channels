@@ -1,18 +1,20 @@
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 
-const Menu = () => {
+const Menu = ({ onClick }) => {
   return (
     <DropdownButton
       align="end"
-      title="Dropdown end"
-      id="dropdown-menu-align-end"
+      id="name-end"
+      variant="light"
+      className="p-0 border-0 shadow-none text-reset"
+      onClick={onClick}
+      size="sm"
+      data-bs-display="static"
     >
-      <Dropdown.Item eventKey="1">Action</Dropdown.Item>
-      <Dropdown.Item eventKey="2">Another action</Dropdown.Item>
-      <Dropdown.Item eventKey="3">Something else here</Dropdown.Item>
+      <Dropdown.Item eventKey="1">Переименовать</Dropdown.Item>
       <Dropdown.Divider />
-      <Dropdown.Item eventKey="4">Separated link</Dropdown.Item>
+      <Dropdown.Item eventKey="2">Удалить</Dropdown.Item>
     </DropdownButton>
   );
 };

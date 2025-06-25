@@ -15,7 +15,7 @@ const Remove = (props) => {
   const onSubmit = generateOnSubmit(props);
   return (
     <div>
-      <Modal show onHide={onClose} backdrop={true} keyboard={true}>
+      <Modal centered show onHide={onClose} backdrop={true} keyboard={true}>
         <Modal.Header closeButton>
           <Modal.Title>Remove</Modal.Title>
         </Modal.Header>

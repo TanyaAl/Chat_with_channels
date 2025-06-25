@@ -10,6 +10,9 @@ const channelsSlice = createSlice({
     setChannels(state, { payload }) {
       state.channels = payload;
     },
+    addChannel(state, { payload }) {
+      state.channels.push(payload);
+    },
   },
 });
 export const actions = channelsSlice.actions;

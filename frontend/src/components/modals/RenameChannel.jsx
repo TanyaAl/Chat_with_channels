@@ -27,7 +27,7 @@ const Rename = (props) => {
 
   return (
     <div>
-      <Modal show onHide={onClose} backdrop={true} keyboard={true}>
+      <Modal centered show onHide={onClose} backdrop={true} keyboard={true}>
         <Modal.Header closeButton>
           <Modal.Title>Rename</Modal.Title>
         </Modal.Header>

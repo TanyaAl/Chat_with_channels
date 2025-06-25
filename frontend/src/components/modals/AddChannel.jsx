@@ -1,44 +1,82 @@
 import { useEffect, useRef } from 'react';
-// import _ from 'lodash';
 import { useFormik } from 'formik';
-import { Modal, FormGroup, FormControl } from 'react-bootstrap';
+import { useSelector } from 'react-redux';
+import { Modal, Form, FormGroup, FormControl, Button } from 'react-bootstrap';
+import getAuthHeader from '../../../utils/auth';
+import axios from 'axios';
+import getChannelValidation from '../../../utils/validation';
 
-const Add = (props) => {
-  const { onClose } = props;
-  const formik = useFormik({
-    initialValues: { body: '' },
-    onSubmit: (values) => console.log(values),
-  });
-
+const Add = ({ onClose }) => {
   const inputEl = useRef(null);
+  const { channels } = useSelector((state) => state.channelsReducer);
+  const names = channels.map((channel) => channel.name);
+  const validationSchema = getChannelValidation(names);
+
   useEffect(() => {
     inputEl.current.focus();
-  }, []);
+  }, [onClose]);
+  const formik = useFormik({
+    initialValues: { name: '' },
+    validationSchema: validationSchema,
+    onSubmit: async (values) => {
+      console.log(values);
+      const newChannel = { name: values.name };
+      try {
+        const responseChannel = await axios.post(
+          '/api/v1/channels',
+          newChannel,
+          {
+            headers: getAuthHeader(),
+          },
+        );
+        console.log('newChannel', responseChannel);
+        formik.resetForm();
+        onClose();
+      } catch (error) {
+        console.error('Ошибка при создании канала', error);
+      } finally {
+        formik.setSubmitting(false);
+      }
+    },
+  });
 
   return (
     <div>
-      <Modal show onHide={onClose} backdrop={true} keyboard={true}>
+      <Modal centered show onHide={onClose} backdrop={true} keyboard={true}>
         <Modal.Header closeButton>
-          <Modal.Title>Add</Modal.Title>
+          <Modal.Title>Добавить канал</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <form onSubmit={formik.handleSubmit}>
+          <Form onSubmit={formik.handleSubmit}>
             <FormGroup>
               <FormControl
-                name="body"
-                value={formik.values.body}
+                name="name"
+                value={formik.values.name}
                 onChange={formik.handleChange}
                 required
-                data-testid="input-body"
+                data-testid="input-name"
                 ref={inputEl}
+                onBlur={formik.handleBlur}
+                isInvalid={formik.touched.name && !!formik.errors.name}
               />
+              {formik.touched.name && formik.errors.name ? (
+                <FormControl.Feedback type="invalid">
+                  {formik.errors.name}
+                </FormControl.Feedback>
+              ) : null}
             </FormGroup>
-            <input
-              type="submit"
-              className="btn btn-primary mt-3"
-              value="submit"
-            />
-          </form>
+            <div className="d-flex justify-content-end">
+              <Button
+                onClick={() => onClose()}
+                className="btn btn-secondary me-3 mt-3"
+              >
+                Отменить
+              </Button>
+              <Button type="submit" className="btn btn-primary mt-3">
+                Отправить
+              </Button>
+            </div>
+          </Form>
         </Modal.Body>
       </Modal>
     </div>

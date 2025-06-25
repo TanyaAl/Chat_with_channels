@@ -25,7 +25,6 @@ const FormForComment = () => {
         channelId: activeChannel,
         username: user.username,
       };
-      console.log('MESSAGE', message);
       const responseMessage = await axios.post('/api/v1/messages', message, {
         headers: getAuthHeader(),
       });

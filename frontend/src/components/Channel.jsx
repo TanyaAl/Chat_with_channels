@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { Button } from 'react-bootstrap';
 import { actions as activeChannelIdActions } from '../../store/activeChannelSlice';
+import Menu from './modals/Menu';
 
 const Channel = ({ channel }) => {
   const dispatch = useDispatch();
@@ -20,8 +21,12 @@ const Channel = ({ channel }) => {
     <Button
       onClick={handleClick}
       type="button"
-      className={classBtn}
-    >{`#${channel.name}`}</Button>
+      className={`${classBtn} d-flex justify-content-between align-items-center pe-2`}
+    >
+      <span className="flex-grow-1 text-truncate"># {channel.name}</span>
+
+      <Menu id={channel.id} onClick={(e) => e.stopPropagation()} />
+    </Button>
   );
 };
 
