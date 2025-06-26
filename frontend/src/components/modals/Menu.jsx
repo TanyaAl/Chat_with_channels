@@ -1,21 +1,38 @@
 import Dropdown from 'react-bootstrap/Dropdown';
-import DropdownButton from 'react-bootstrap/DropdownButton';
+import { useDispatch } from 'react-redux';
+import { actions as modalsActions } from '../../../store/modalsSlice';
 
-const Menu = ({ onClick }) => {
+const Menu = ({ className, channel }) => {
+  const dispatch = useDispatch();
+
+  const handleClickRename = (channel) => {
+    const renaming = { type: 'renaming', data: channel.name };
+    dispatch(modalsActions.openModal(renaming));
+  };
+
+  const handleClickRemove = (channel) => {
+    const removing = { type: 'removing', data: channel.id };
+    dispatch(modalsActions.openModal(removing));
+  };
   return (
-    <DropdownButton
-      align="end"
-      id="name-end"
-      variant="light"
-      className="p-0 border-0 shadow-none text-reset"
-      onClick={onClick}
-      size="sm"
-      data-bs-display="static"
-    >
-      <Dropdown.Item eventKey="1">Переименовать</Dropdown.Item>
-      <Dropdown.Divider />
-      <Dropdown.Item eventKey="2">Удалить</Dropdown.Item>
-    </DropdownButton>
+    <Dropdown>
+      <Dropdown.Toggle
+        id={channel.id}
+        className={`btn ${className} flex-grow-0`}
+      >
+        {' '}
+        <span className="visually-hidden">Управление каналом</span>
+      </Dropdown.Toggle>
+
+      <Dropdown.Menu>
+        <Dropdown.Item onClick={() => handleClickRemove(channel)} eventKey="1">
+          Удалить
+        </Dropdown.Item>
+        <Dropdown.Item onClick={() => handleClickRename(channel)} eventKey="2">
+          Переименовать
+        </Dropdown.Item>
+      </Dropdown.Menu>
+    </Dropdown>
   );
 };
 

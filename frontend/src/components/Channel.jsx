@@ -14,19 +14,27 @@ const Channel = ({ channel }) => {
 
   const classBtn =
     activeChannelId === channel.id
-      ? 'w-100 rounded-0 text-start btn btn-secondary'
-      : 'w-100 rounded-0 text-start btn btn-light';
+      ? 'rounded-0 text-start btn btn-secondary'
+      : 'rounded-0 text-start btn btn-light';
+
+  const classToggle =
+    activeChannelId === channel.id
+      ? 'btn-secondary rounded-0'
+      : 'btn-light rounded-0';
 
   return (
-    <Button
-      onClick={handleClick}
-      type="button"
-      className={`${classBtn} d-flex justify-content-between align-items-center pe-2`}
-    >
-      <span className="flex-grow-1 text-truncate"># {channel.name}</span>
-
-      <Menu id={channel.id} onClick={(e) => e.stopPropagation()} />
-    </Button>
+    <div className="d-flex btn-group ">
+      <Button
+        onClick={handleClick}
+        type="button"
+        className={`${classBtn} text-truncate `}
+      >
+        <span className="me-3"># {channel.name}</span>
+      </Button>
+      {channel.removable === true && (
+        <Menu className={classToggle} channel={channel} />
+      )}
+    </div>
   );
 };
 

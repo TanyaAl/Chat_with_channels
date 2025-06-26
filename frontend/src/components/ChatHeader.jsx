@@ -6,6 +6,7 @@ const ChatHeader = () => {
   );
   const channels = useSelector((state) => state.channelsReducer.channels);
   const activeTitle = channels.find((channel) => channel.id === activeId);
+
   const countMessages = useSelector(
     (state) => state.messagesReducer.messages,
   ).filter((message) => message.channelId === activeId).length;

@@ -22,14 +22,9 @@ const Add = ({ onClose }) => {
       console.log(values);
       const newChannel = { name: values.name };
       try {
-        const responseChannel = await axios.post(
-          '/api/v1/channels',
-          newChannel,
-          {
-            headers: getAuthHeader(),
-          },
-        );
-        console.log('newChannel', responseChannel);
+        await axios.post('/api/v1/channels', newChannel, {
+          headers: getAuthHeader(),
+        });
         formik.resetForm();
         onClose();
       } catch (error) {

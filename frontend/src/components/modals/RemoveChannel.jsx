@@ -1,30 +1,48 @@
-import { Modal, FormGroup } from 'react-bootstrap';
+import { Modal, Button } from 'react-bootstrap';
+import { useSelector } from 'react-redux';
+import axios from 'axios';
+import getAuthHeader from '../../../utils/auth';
 
-const generateOnSubmit =
-  ({ modalType, onClose, updateTasks }) =>
-  (e) => {
-    e.preventDefault();
-    updateTasks((items) =>
-      items.filter((task) => task.id !== modalType.item.id),
-    );
-    onClose();
+const Remove = ({ data, onClose }) => {
+  const { channels } = useSelector((state) => state.channelsReducer);
+  const channelToRemove = channels.find((channel) => channel.id === data);
+
+  const handleClickRemove = async () => {
+    try {
+      await axios.delete(`/api/v1/channels/${channelToRemove.id}`, {
+        headers: getAuthHeader(),
+      });
+      onClose();
+    } catch (error) {
+      console.error(`Не удалось удалить канал, попробуйте позже: ${error}`);
+    }
   };
-
-const Remove = (props) => {
-  const { onClose } = props;
-  const onSubmit = generateOnSubmit(props);
   return (
     <div>
       <Modal centered show onHide={onClose} backdrop={true} keyboard={true}>
         <Modal.Header closeButton>
-          <Modal.Title>Remove</Modal.Title>
+          <Modal.Title>
+            Удалить канал {channelToRemove ? channelToRemove.name : ''}?{' '}
+          </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <form onSubmit={onSubmit}>
-            <FormGroup>
-              <input className="btn btn-danger" type="submit" value="remove" />
-            </FormGroup>
-          </form>
+          {' '}
+          <div>Уверены?</div>
+          <div className="d-flex justify-content-end">
+            <Button
+              onClick={() => onClose()}
+              className="btn btn-secondary me-3 mt-3"
+            >
+              Отменить
+            </Button>
+            <Button
+              onClick={() => handleClickRemove()}
+              type="submit"
+              className="btn btn-danger mt-3"
+            >
+              Удалить
+            </Button>
+          </div>
         </Modal.Body>
       </Modal>
     </div>

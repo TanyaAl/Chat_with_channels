@@ -1,23 +1,12 @@
 import { useEffect, useRef } from 'react';
 import { useFormik } from 'formik';
-import { Modal, FormGroup, FormControl } from 'react-bootstrap';
+import { Modal, Form, FormGroup, FormControl, Button } from 'react-bootstrap';
+import { values } from 'lodash';
 
-const generateOnSubmit =
-  ({ modalType, onClose, updateTasks }) =>
-  (values) => {
-    updateTasks((items) => {
-      const renamedTask = items.find((task) => task.id === modalType.item.id);
-      renamedTask.body = values.body;
-    });
-    onClose();
-  };
-
-const Rename = (props) => {
-  const { modalType, onClose } = props;
-  const { item } = modalType;
+const Rename = ({ data, onClose }) => {
   const formik = useFormik({
-    initialValues: item,
-    onSubmit: generateOnSubmit(props),
+    initialValues: data,
+    onSubmit: console.log(values),
   });
 
   const inputEl = useRef(null);
@@ -29,26 +18,39 @@ const Rename = (props) => {
     <div>
       <Modal centered show onHide={onClose} backdrop={true} keyboard={true}>
         <Modal.Header closeButton>
-          <Modal.Title>Rename</Modal.Title>
+          <Modal.Title>Переименовать канал</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <form onSubmit={formik.handleSubmit}>
+          <Form onSubmit={formik.handleSubmit}>
             <FormGroup>
               <FormControl
-                name="body"
-                value={formik.values.body}
+                name="name"
+                value={formik.values.data}
                 onChange={formik.handleChange}
                 required
-                data-testid="input-body"
+                data-testid="input-name"
                 ref={inputEl}
+                onBlur={formik.handleBlur}
+                isInvalid={formik.touched.name && !!formik.errors.name}
               />
+              {formik.touched.name && formik.errors.name ? (
+                <FormControl.Feedback type="invalid">
+                  {formik.errors.name}
+                </FormControl.Feedback>
+              ) : null}
             </FormGroup>
-            <input
-              type="submit"
-              className="btn btn-primary mt-3"
-              value="submit"
-            />
-          </form>
+            <div className="d-flex justify-content-end">
+              <Button
+                onClick={() => onClose()}
+                className="btn btn-secondary me-3 mt-3"
+              >
+                Отменить
+              </Button>
+              <Button type="submit" className="btn btn-primary mt-3">
+                Отправить
+              </Button>
+            </div>
+          </Form>
         </Modal.Body>
       </Modal>
     </div>

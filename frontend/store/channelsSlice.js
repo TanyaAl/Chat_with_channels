@@ -1,8 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = {
-  channels: [],
-};
+const initialState = { messages: [] };
 const channelsSlice = createSlice({
   name: 'channels',
   initialState,
@@ -12,6 +10,11 @@ const channelsSlice = createSlice({
     },
     addChannel(state, { payload }) {
       state.channels.push(payload);
+    },
+    removeChannel(state, { payload }) {
+      console.log('STORE_ID', payload);
+      const { id } = payload;
+      state.channels = state.channels.filter((channel) => channel.id !== id);
     },
   },
 });
