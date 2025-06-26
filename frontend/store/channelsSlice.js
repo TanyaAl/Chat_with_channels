@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = { messages: [] };
+const initialState = { channels: [] };
 const channelsSlice = createSlice({
   name: 'channels',
   initialState,
