@@ -17,7 +17,7 @@ const init = () => {
     const state = store.getState();
     const activId = state.activeChannelReducer.activeChannelId;
     if (activId === id) {
-      store.dispatch(activeChannelActions.setActiveChannelId(1));
+      store.dispatch(activeChannelActions.setActiveChannelId('1'));
       console.log('Активный канал был удален, переключено на ID 1.');
     }
     store.dispatch(channelsActions.removeChannel(payload));
