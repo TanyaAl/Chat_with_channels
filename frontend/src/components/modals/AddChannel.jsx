@@ -19,7 +19,6 @@ const Add = ({ onClose }) => {
     initialValues: { name: '' },
     validationSchema: validationSchema,
     onSubmit: async (values) => {
-      console.log(values);
       const newChannel = { name: values.name };
       try {
         await axios.post('/api/v1/channels', newChannel, {
@@ -28,7 +27,7 @@ const Add = ({ onClose }) => {
         formik.resetForm();
         onClose();
       } catch (error) {
-        console.error('Ошибка при создании канала', error);
+        console.error('Ошибка при создании канала:', error);
       } finally {
         formik.setSubmitting(false);
       }
