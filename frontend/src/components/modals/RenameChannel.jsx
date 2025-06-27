@@ -1,16 +1,29 @@
 import { useEffect, useRef } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useFormik } from 'formik';
 import { Modal, Form, FormGroup, FormControl, Button } from 'react-bootstrap';
-import { values } from 'lodash';
+import { actions as channelsActions } from '../../../store/channelsSlice';
 
 const Rename = ({ data, onClose }) => {
+  const dispatch = useDispatch();
+  const { channels } = useSelector((state) => state.channelsReducer);
+  const names = channels.map((channel) => channel.name);
+  console.log('names', names);
   const formik = useFormik({
-    initialValues: data,
-    onSubmit: console.log(values),
+    initialValues: { name: data.name, id: data.id },
+    onSubmit: (values) => {
+      if (names.includes(values.name)) {
+        formik.setFieldError('name', 'Имя канала уже существует');
+      } else {
+        dispatch(channelsActions.renameChannel(values));
+        onClose();
+      }
+    },
   });
 
   const inputEl = useRef(null);
   useEffect(() => {
+    inputEl.current.focus();
     inputEl.current.select();
   }, []);
 
@@ -25,18 +38,18 @@ const Rename = ({ data, onClose }) => {
             <FormGroup>
               <FormControl
                 name="name"
-                value={formik.values.data}
+                value={formik.values.name}
                 onChange={formik.handleChange}
                 required
                 data-testid="input-name"
                 ref={inputEl}
                 onBlur={formik.handleBlur}
-                isInvalid={formik.touched.name && !!formik.errors.name}
+                isInvalid={formik.errors.name}
               />
-              {formik.touched.name && formik.errors.name ? (
-                <FormControl.Feedback type="invalid">
+              {formik.errors.name ? (
+                <Form.Control.Feedback type="invalid">
                   {formik.errors.name}
-                </FormControl.Feedback>
+                </Form.Control.Feedback>
               ) : null}
             </FormGroup>
             <div className="d-flex justify-content-end">

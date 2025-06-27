@@ -5,8 +5,9 @@ import { actions as modalsActions } from '../../../store/modalsSlice';
 const Menu = ({ className, channel }) => {
   const dispatch = useDispatch();
 
-  const handleClickRename = (channel) => {
-    const renaming = { type: 'renaming', data: channel.name };
+  const handleClickRename = (data) => {
+    const renaming = { type: 'renaming', data: data };
+    console.log('RENAME', renaming);
     dispatch(modalsActions.openModal(renaming));
   };
 

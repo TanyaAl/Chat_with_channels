@@ -12,9 +12,14 @@ const channelsSlice = createSlice({
       state.channels.push(payload);
     },
     removeChannel(state, { payload }) {
-      console.log('STORE_ID', payload);
       const { id } = payload;
       state.channels = state.channels.filter((channel) => channel.id !== id);
+    },
+    renameChannel(state, { payload }) {
+      const stateNew = state.channels.find(
+        (channel) => channel.id === payload.id,
+      );
+      stateNew.name = payload.name;
     },
   },
 });

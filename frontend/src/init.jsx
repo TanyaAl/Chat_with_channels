@@ -18,10 +18,11 @@ const init = () => {
     const activId = state.activeChannelReducer.activeChannelId;
     if (activId === id) {
       store.dispatch(activeChannelActions.setActiveChannelId('1'));
-      console.log('Активный канал был удален, переключено на ID 1.');
     }
     store.dispatch(channelsActions.removeChannel(payload));
-    console.log('Состояние после удаления канала:', store.getState());
+  });
+  socket.on('renameChannel', (payload) => {
+    store.dispatch(channelsActions.renameChannel(payload));
   });
   return { socket };
 };

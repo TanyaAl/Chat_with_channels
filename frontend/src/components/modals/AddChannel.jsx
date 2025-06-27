@@ -52,9 +52,9 @@ const Add = ({ onClose }) => {
                 data-testid="input-name"
                 ref={inputEl}
                 onBlur={formik.handleBlur}
-                isInvalid={formik.touched.name && !!formik.errors.name}
+                isInvalid={formik.errors.name}
               />
-              {formik.touched.name && formik.errors.name ? (
+              {formik.errors.name ? (
                 <FormControl.Feedback type="invalid">
                   {formik.errors.name}
                 </FormControl.Feedback>
