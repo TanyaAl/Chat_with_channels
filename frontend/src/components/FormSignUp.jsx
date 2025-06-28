@@ -1,22 +1,19 @@
 import { useFormik } from 'formik';
 import { Form, Button } from 'react-bootstrap';
-// import { useSelector, useDispatch } from 'react-redux';
 import { useRef, useEffect } from 'react';
 import { getSignUpValidation } from '../../utils/validation';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-// import { actions as usersActions } from '../../store/usersSlice';
 import useAuth from '../hooks/index.jsx';
+import { useTranslation } from 'react-i18next';
 
 const FormSignUp = () => {
   const inputEl = useRef(null);
   const navigate = useNavigate();
-  // const dispatch = useDispatch();
   const auth = useAuth();
-  // const { users } = useSelector((state) => state.usersReducer);
-  // console.log('USERS', users);
+  const { t } = useTranslation();
   useEffect(() => inputEl.current.focus(), []);
-  const validationSchema = getSignUpValidation();
+  const validationSchema = getSignUpValidation(t);
 
   const formik = useFormik({
     initialValues: { username: '', password: '', repeatPassword: '' },
@@ -29,14 +26,13 @@ const FormSignUp = () => {
         });
         console.log('NEWUSER', response);
         localStorage.setItem('user', JSON.stringify(response.data));
-        // dispatch(usersActions.addUser(values.username));
         auth.logIn();
         navigate('/');
         formik.resetForm();
       } catch (err) {
-        console.error('Регистрация не удалась', err);
+        console.error(t('network'), err);
         if (err.response && err.response.status === 409) {
-          formik.setFieldError('username', 'Это имя пользователя уже занято.');
+          formik.setFieldError('username', t('validation.withoutDoubles'));
         }
         throw err;
       }
@@ -46,7 +42,7 @@ const FormSignUp = () => {
 
   return (
     <div className="container-fluid">
-      <div className="row justify-content-center pt-5">
+      <div className="row justify-content-center">
         <div className="col-sm-12">
           <Form onSubmit={formik.handleSubmit} className="p-3">
             <fieldset>
@@ -57,7 +53,7 @@ const FormSignUp = () => {
                     formik.setFieldTouched('username', true, false);
                     formik.handleChange(e);
                   }}
-                  placeholder="Ваш ник"
+                  placeholder="Имя пользователя"
                   value={formik.values.username}
                   ref={inputEl}
                   type="text"
@@ -68,7 +64,7 @@ const FormSignUp = () => {
                 {formik.touched.username && formik.errors.username && (
                   <div className="text-danger">{formik.errors.username}</div>
                 )}
-                <Form.Label htmlFor="username">Ник</Form.Label>
+                <Form.Label htmlFor="username">Имя пользователя</Form.Label>
               </Form.Group>
               <Form.Group className="form-floating mb-3">
                 <Form.Control
@@ -114,7 +110,7 @@ const FormSignUp = () => {
                 variant="outline-primary"
                 className="w-100 btn"
               >
-                Зарегистрироваться
+                {t('interface_texts.signupBtn')}
               </Button>
             </fieldset>
           </Form>

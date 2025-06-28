@@ -5,12 +5,14 @@ import { Modal, Form, FormGroup, FormControl, Button } from 'react-bootstrap';
 import getAuthHeader from '../../../utils/auth';
 import axios from 'axios';
 import { getChannelValidation } from '../../../utils/validation';
+import { useTranslation } from 'react-i18next';
 
 const Add = ({ onClose }) => {
   const inputEl = useRef(null);
   const { channels } = useSelector((state) => state.channelsReducer);
+  const { t } = useTranslation();
   const names = channels.map((channel) => channel.name);
-  const validationSchema = getChannelValidation(names);
+  const validationSchema = getChannelValidation(t, names);
 
   useEffect(() => {
     inputEl.current.focus();
@@ -27,7 +29,7 @@ const Add = ({ onClose }) => {
         formik.resetForm();
         onClose();
       } catch (error) {
-        console.error('Ошибка при создании канала:', error);
+        console.error(t('network'), error);
       } finally {
         formik.setSubmitting(false);
       }
@@ -38,7 +40,7 @@ const Add = ({ onClose }) => {
     <div>
       <Modal centered show onHide={onClose} backdrop={true} keyboard={true}>
         <Modal.Header closeButton>
-          <Modal.Title>Добавить канал</Modal.Title>
+          <Modal.Title>{t('interface_texts.modals.addChannel')}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form onSubmit={formik.handleSubmit}>
@@ -67,10 +69,10 @@ const Add = ({ onClose }) => {
                 onClick={() => onClose()}
                 className="btn btn-secondary me-3 mt-3"
               >
-                Отменить
+                {t('interface_texts.modals.btnDiscard')}
               </Button>
               <Button type="submit" className="btn btn-primary mt-3">
-                Отправить
+                {t('interface_texts.modals.btnSend')}
               </Button>
             </div>
           </Form>

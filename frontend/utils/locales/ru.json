@@ -1,0 +1,38 @@
+{
+  "translation": {
+    "validation": {
+      "requiredField": "Поле не должно быть пустым",
+      "minNameLength": "Имя должно быть не менее 3 символов",
+      "maxNameLength": "Имя должно быть не более 20 символов",
+      "password": "Пароль не должен быть короче 6 символов",
+      "repeatPassword": "Пароли должны совпадать",
+      "withoutDoubles": "Это имя уже занято"
+    },
+    "network": "Ошибка сети",
+    "interface_texts": {
+      "headerBtn": "Выйти",
+      "loginPageBtn": "Войти",
+      "loginPageQuestion": "Нет аккаунта?",
+      "loginPageToReg": "Регистрация",
+      "signupBtn": "Зарегистрироваться",
+      "signupTitle": "Регистрация",
+      "chatPageChannels": "Каналы",
+      "messages": {
+        "key_zero": "{{count}} сообщений",
+        "key_one": "{{count}} сообщение",
+        "key_few": "{{count}} сообщения",
+        "key_many": "{{count}} сообщений"
+      },
+      "modals": {
+        "addChannel": "Добавить канал",
+        "renameChannel": "Переименовать канал",
+        "removeChannel": "Удалить канал",
+        "areYouSure": "Уверены?",
+        "btnDiscard": "Отменить",
+        "btnRemove": "Удалить",
+        "btnSend": "Отправить"
+      },
+      "forms": {}
+    }
+  }
+}

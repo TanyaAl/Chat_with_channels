@@ -1,8 +1,10 @@
 import { Navbar, Container, Button } from 'react-bootstrap';
 import useAuth from '../hooks/index.jsx';
+import { useTranslation } from 'react-i18next';
 
 const NavBar = () => {
   const auth = useAuth();
+  const { t } = useTranslation();
   return (
     <Navbar
       expand="lg"
@@ -16,7 +18,7 @@ const NavBar = () => {
             type="button"
             className="btn btn-primary ms-auto"
           >
-            Выйти
+            {t('interface_texts.headerBtn')}
           </Button>
         )}
       </Container>

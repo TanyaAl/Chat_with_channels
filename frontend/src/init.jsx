@@ -3,6 +3,9 @@ import store from '../store/index';
 import { actions as messagesActions } from '../store/messagesSlice';
 import { actions as channelsActions } from '../store/channelsSlice';
 import { actions as activeChannelActions } from '../store/activeChannelSlice';
+import i18next from 'i18next';
+import { initReactI18next } from 'react-i18next';
+import resources from './../utils/locales/index';
 
 const init = () => {
   const socket = io();
@@ -26,4 +29,14 @@ const init = () => {
   });
   return { socket };
 };
-export default init;
+
+i18next.use(initReactI18next).init({
+  lng: 'ru',
+  resources,
+  fallbackLng: 'ru',
+  interpolation: {
+    escapeValue: false,
+  },
+  debug: true,
+});
+export { init, i18next };

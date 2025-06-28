@@ -2,6 +2,7 @@ import { useFormik } from 'formik';
 import { Form, Button } from 'react-bootstrap';
 import { useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 import useAuth from '../hooks/index.jsx';
 import { useDispatch } from 'react-redux';
@@ -12,6 +13,7 @@ const FormLogin = () => {
   const navigate = useNavigate();
   const auth = useAuth();
   const dispatch = useDispatch();
+  const { t } = useTranslation();
 
   useEffect(() => {
     inputEl.current.focus();
@@ -42,10 +44,13 @@ const FormLogin = () => {
 
   return (
     <div className="container-fluid">
-      <div className="row justify-content-center pt-5">
+      <div className="row justify-content-center">
         <div className="col-sm-12">
           <Form onSubmit={formik.handleSubmit} className="p-3">
             <fieldset>
+              <h1 className="text-center mb-4">
+                {t('interface_texts.loginPageBtn')}
+              </h1>
               <Form.Group className="form-floating mb-3">
                 <Form.Control
                   onChange={formik.handleChange}
@@ -57,7 +62,7 @@ const FormLogin = () => {
                   required
                   onBlur={formik.onBlur}
                 />
-                <Form.Label htmlFor="username">Ник</Form.Label>
+                <Form.Label htmlFor="username">Ваш ник</Form.Label>
               </Form.Group>
               <Form.Group className="form-floating mb-4">
                 <Form.Control
@@ -81,7 +86,7 @@ const FormLogin = () => {
                 variant="outline-primary"
                 className="w-100 btn"
               >
-                Войти
+                {t('interface_texts.loginPageBtn')}
               </Button>
             </fieldset>
           </Form>

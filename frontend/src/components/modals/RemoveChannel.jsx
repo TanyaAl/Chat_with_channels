@@ -1,10 +1,12 @@
 import { Modal, Button } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 import getAuthHeader from '../../../utils/auth';
 
 const Remove = ({ data, onClose }) => {
   const { channels } = useSelector((state) => state.channelsReducer);
+  const { t } = useTranslation();
   const channelToRemove = channels.find((channel) => channel.id === data);
 
   const handleClickRemove = async () => {
@@ -22,25 +24,26 @@ const Remove = ({ data, onClose }) => {
       <Modal centered show onHide={onClose} backdrop={true} keyboard={true}>
         <Modal.Header closeButton>
           <Modal.Title>
-            Удалить канал {channelToRemove ? channelToRemove.name : ''}?{' '}
+            {t('interface_texts.modals.removeChannel')}{' '}
+            {channelToRemove ? channelToRemove.name : ''}?{' '}
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           {' '}
-          <div>Уверены?</div>
+          <div>{t('interface_texts.modals.areYouSure')}</div>
           <div className="d-flex justify-content-end">
             <Button
               onClick={() => onClose()}
               className="btn btn-secondary me-3 mt-3"
             >
-              Отменить
+              {t('interface_texts.modals.btnDiscard')}
             </Button>
             <Button
               onClick={() => handleClickRemove()}
               type="submit"
               className="btn btn-danger mt-3"
             >
-              Удалить
+              {t('interface_texts.modals.btnRemove')}
             </Button>
           </div>
         </Modal.Body>

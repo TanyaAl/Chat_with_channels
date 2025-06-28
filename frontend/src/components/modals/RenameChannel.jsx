@@ -1,15 +1,17 @@
 import { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useFormik } from 'formik';
+import { useTranslation } from 'react-i18next';
 import { Modal, Form, FormGroup, FormControl, Button } from 'react-bootstrap';
 import { actions as channelsActions } from '../../../store/channelsSlice';
 import { getChannelValidation } from '../../../utils/validation';
 
 const Rename = ({ data, onClose }) => {
   const dispatch = useDispatch();
+  const { t } = useTranslation();
   const { channels } = useSelector((state) => state.channelsReducer);
   const names = channels.map((channel) => channel.name);
-  const validationSchema = getChannelValidation(names);
+  const validationSchema = getChannelValidation(t, names);
 
   const formik = useFormik({
     initialValues: { name: data.name, id: data.id },
@@ -37,7 +39,7 @@ const Rename = ({ data, onClose }) => {
     <div>
       <Modal centered show onHide={onClose} backdrop={true} keyboard={true}>
         <Modal.Header closeButton>
-          <Modal.Title>Переименовать канал</Modal.Title>
+          <Modal.Title>{t('interface_texts.modals.renameChannel')}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form onSubmit={formik.handleSubmit}>
@@ -66,10 +68,10 @@ const Rename = ({ data, onClose }) => {
                 onClick={() => onClose()}
                 className="btn btn-secondary me-3 mt-3"
               >
-                Отменить
+                {t('interface_texts.modals.btnDiscard')}
               </Button>
               <Button type="submit" className="btn btn-primary mt-3">
-                Отправить
+                {t('interface_texts.modals.btnSend')}
               </Button>
             </div>
           </Form>

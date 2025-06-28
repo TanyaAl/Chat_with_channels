@@ -1,7 +1,9 @@
 import loginPage from '../assets/avatar.jpg';
 import FormLogin from '../components/FormLogin';
+import { useTranslation } from 'react-i18next';
 
 const LoginPage = () => {
+  const { t } = useTranslation();
   return (
     <div className="d-flex flex-column h-100">
       <div className="container-fluid h-100">
@@ -22,8 +24,8 @@ const LoginPage = () => {
               </div>
               <div className="card-footer p-4">
                 <div className="text-center">
-                  <span>Нет аккаунта? </span>
-                  <a href="/signup">Регистрация</a>
+                  <span>{t('interface_texts.loginPageQuestion')} </span>
+                  <a href="/signup">{t('interface_texts.loginPageToReg')}</a>
                 </div>
               </div>
             </div>

@@ -1,10 +1,12 @@
 import Channels from './Channels';
 import { Button } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 import { actions as modalsActions } from '../../store/modalsSlice';
 
 const ChannelsSideBar = () => {
   const dispatch = useDispatch();
+  const { t } = useTranslation();
   const handleClick = () => {
     const adding = { type: 'adding', data: null };
     dispatch(modalsActions.openModal(adding));
@@ -12,7 +14,7 @@ const ChannelsSideBar = () => {
   return (
     <div className="border-end px-0 bg-light flex-column h-100 d-flex">
       <div className="d-flex mt-1 justify-content-between mb-2 ps-4 pe-2 p-4">
-        <b>Каналы</b>
+        <b>{t('interface_texts.chatPageChannels')}</b>
         <Button
           onClick={handleClick}
           type="button"
