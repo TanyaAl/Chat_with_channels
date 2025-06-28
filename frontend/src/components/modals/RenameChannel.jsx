@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useFormik } from 'formik';
 import { Modal, Form, FormGroup, FormControl, Button } from 'react-bootstrap';
 import { actions as channelsActions } from '../../../store/channelsSlice';
-import getChannelValidation from '../../../utils/validation';
+import { getChannelValidation } from '../../../utils/validation';
 
 const Rename = ({ data, onClose }) => {
   const dispatch = useDispatch();
@@ -20,7 +20,7 @@ const Rename = ({ data, onClose }) => {
         dispatch(channelsActions.renameChannel(values));
         onClose();
       } catch (error) {
-        console.error('Не удалось переименовать канал:', error);
+        console.error(`Не удалось переименовать канал:, ${error}`);
       } finally {
         formik.setSubmitting(false);
       }
@@ -45,7 +45,10 @@ const Rename = ({ data, onClose }) => {
               <FormControl
                 name="name"
                 value={formik.values.name}
-                onChange={formik.handleChange}
+                onChange={(e) => {
+                  formik.setFieldTouched('name', true, false);
+                  formik.handleChange(e);
+                }}
                 required
                 data-testid="input-name"
                 ref={inputEl}

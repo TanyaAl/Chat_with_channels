@@ -8,9 +8,6 @@ const usersSlice = createSlice({
   name: 'users',
   initialState,
   reducers: {
-    setUsers(state, { payload }) {
-      state.users = payload;
-    },
     addUser(state, { payload }) {
       state.users.push(payload);
     },

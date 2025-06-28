@@ -29,6 +29,7 @@ const FormLogin = () => {
         dispatch(usersActions.addUser(values));
         auth.logIn();
         navigate('/');
+        formik.resetForm();
       } catch (err) {
         formik.setErrors({ auth: 'Неверные имя пользователя или пароль' });
         if (err.isAxiosError && err.response.status === 401) {
@@ -45,12 +46,8 @@ const FormLogin = () => {
         <div className="col-sm-12">
           <Form onSubmit={formik.handleSubmit} className="p-3">
             <fieldset>
-              <Form.Group>
-                <Form.Label className="visually-hidden" htmlFor="username">
-                  Ник
-                </Form.Label>
+              <Form.Group className="form-floating mb-3">
                 <Form.Control
-                  className="form-floating mb-3"
                   onChange={formik.handleChange}
                   placeholder="Ваш ник"
                   value={formik.values.username}
@@ -58,28 +55,32 @@ const FormLogin = () => {
                   type="text"
                   name="username"
                   required
+                  onBlur={formik.onBlur}
                 />
+                <Form.Label htmlFor="username">Ник</Form.Label>
               </Form.Group>
-              <Form.Group>
-                <Form.Label className="visually-hidden" htmlFor="password">
-                  Пароль
-                </Form.Label>
+              <Form.Group className="form-floating mb-4">
                 <Form.Control
-                  className="form-floating "
                   onChange={formik.handleChange}
                   placeholder="Пароль"
                   value={formik.values.password}
                   type="password"
                   name="password"
                   required
+                  onBlur={formik.onBlur}
                 />
+                <Form.Label htmlFor="password">Пароль</Form.Label>
                 {formik.errors.auth && (
                   <div className="text-center text-danger">
                     {formik.errors.auth}
                   </div>
                 )}
               </Form.Group>
-              <Button type="submit" className="w-100 mb-3 mt-4 btn btn-primary">
+              <Button
+                type="submit"
+                variant="outline-primary"
+                className="w-100 btn"
+              >
                 Войти
               </Button>
             </fieldset>

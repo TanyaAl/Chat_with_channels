@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { Modal, Form, FormGroup, FormControl, Button } from 'react-bootstrap';
 import getAuthHeader from '../../../utils/auth';
 import axios from 'axios';
-import getChannelValidation from '../../../utils/validation';
+import { getChannelValidation } from '../../../utils/validation';
 
 const Add = ({ onClose }) => {
   const inputEl = useRef(null);
@@ -46,7 +46,10 @@ const Add = ({ onClose }) => {
               <FormControl
                 name="name"
                 value={formik.values.name}
-                onChange={formik.handleChange}
+                onChange={(e) => {
+                  formik.setFieldTouched('name', true, false);
+                  formik.handleChange(e);
+                }}
                 required
                 data-testid="input-name"
                 ref={inputEl}

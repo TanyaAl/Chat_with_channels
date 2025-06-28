@@ -10,7 +10,7 @@ const FormForComment = () => {
   const activeChannel = useSelector(
     (state) => state.activeChannelReducer.activeChannelId,
   );
-  useEffect(() => inputEl.current.focus(), []);
+  useEffect(() => inputEl.current.focus(), [activeChannel]);
   const user = JSON.parse(localStorage.getItem('user'));
 
   const formik = useFormik({
