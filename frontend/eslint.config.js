@@ -22,6 +22,7 @@ export default [
       },
       globals: {
         ...globals.browser,
+        ...globals.node,
         __REACT_DEVTOOLS_GLOBAL_HOOK__: 'readonly',
       },
     },

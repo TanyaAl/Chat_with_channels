@@ -14,8 +14,8 @@ import { Provider as RollbarProvider, ErrorBoundary } from '@rollbar/react';
 const { socket } = init();
 
 const rollbarConfig = {
-  accessToken: 'd988c8ffdb654c7880079967a3786ef9',
-  environment: 'testenv',
+  accessToken: 'REACT_APP_ROLLBAR_TOKEN',
+  environment: 'prod',
 };
 
 createRoot(document.getElementById('root')).render(
