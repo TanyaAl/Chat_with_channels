@@ -39,4 +39,5 @@ i18next.use(initReactI18next).init({
   },
   debug: true,
 });
+
 export { init, i18next };

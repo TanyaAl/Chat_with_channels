@@ -14,6 +14,7 @@ const FormLogin = () => {
   const auth = useAuth();
   const dispatch = useDispatch();
   const { t } = useTranslation();
+  console.log(null);
 
   useEffect(() => {
     inputEl.current.focus();
