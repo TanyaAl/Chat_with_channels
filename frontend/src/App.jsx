@@ -56,10 +56,10 @@ const App = () => {
   return (
     <AuthProvider>
       <BrowserRouter>
-        <div className="d-flex flex-column h-100">
+        {/* <div className="d-flex flex-column h-100">
           <NavBar />
           <Routes>
-            <Route
+            <Route */}
               path="/"
               element={
                 <PrivateRoute>

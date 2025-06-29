@@ -39,7 +39,6 @@ const FormForComment = () => {
         console.error(`${t('network')}, ${err}`);
         toast.error(t('network'));
       }
-      throw new Error('This is a test error from MyComponent!');
     },
   });
   const isSubmitDisabled = formik.values.body.trim() === '';
