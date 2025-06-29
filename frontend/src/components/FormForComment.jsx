@@ -2,11 +2,15 @@ import { useFormik } from 'formik';
 import { Form, Button } from 'react-bootstrap';
 import { useRef, useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 import getAuthHeader from '../../utils/auth';
 import axios from 'axios';
+import { toast } from 'react-toastify';
+import profanityFilter from '../../utils/profanityFilter';
 
 const FormForComment = () => {
   const inputEl = useRef(null);
+  const { t } = useTranslation();
   const activeChannel = useSelector(
     (state) => state.activeChannelReducer.activeChannelId,
   );
@@ -21,15 +25,20 @@ const FormForComment = () => {
     },
     onSubmit: async (values) => {
       const message = {
-        body: values.body,
+        body: profanityFilter.clean(values.body),
         channelId: activeChannel,
         username: user.username,
       };
-      const responseMessage = await axios.post('/api/v1/messages', message, {
-        headers: getAuthHeader(),
-      });
-      console.log('RESPONSEMESSAGE', responseMessage);
-      formik.resetForm();
+      try {
+        await axios.post('/api/v1/messages', message, {
+          headers: getAuthHeader(),
+        });
+
+        formik.resetForm();
+      } catch (err) {
+        console.error(`${t('network')}, ${err}`);
+        toast.error(t('network'));
+      }
     },
   });
   const isSubmitDisabled = formik.values.body.trim() === '';
@@ -41,8 +50,8 @@ const FormForComment = () => {
           <Form.Control
             onChange={formik.handleChange}
             className="border-0 p-0 ps-2 form-control"
-            placeholder="Введите сообщение..."
-            aria-label="Новое сообщение"
+            placeholder={t('interface_texts.forms.writeMessage')}
+            aria-label={t('interface_texts.forms.newMessage')}
             value={formik.values.body}
             ref={inputEl}
             type="text"
@@ -53,11 +62,13 @@ const FormForComment = () => {
             type="submit"
             disabled={isSubmitDisabled}
             className="btn-group-vertical"
-            aria-label="Отправить"
+            aria-label={t('interface_texts.forms.newMesage')}
             variant="outline-primary"
           >
             <i className="bi bi-send"></i>
-            <span className="visually-hidden">Отправить</span>
+            <span className="visually-hidden">
+              {t('interface_texts.forms.newMesage')}
+            </span>
           </Button>
         </div>
       </Form>

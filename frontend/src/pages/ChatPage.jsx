@@ -1,6 +1,8 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useTranslation } from 'react-i18next';
+import { toast } from 'react-toastify';
 import { actions as messagesActions } from '../../store/messagesSlice.js';
 import { actions as channelActions } from '../../store/channelsSlice.js';
 import { actions as activeChannelIdActions } from '../../store/activeChannelSlice.js';
@@ -11,6 +13,7 @@ import getAuthHeader from '../../utils/auth.js';
 const ChatPage = () => {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -33,12 +36,13 @@ const ChatPage = () => {
         dispatch(messagesActions.setMessages(responseMessages.data));
         setLoading(false);
       } catch (err) {
-        console.error('Ошибка запроса:', err);
+        console.error(`${t('network')}, ${err}`);
+        toast.error(t('network'));
         setLoading(false);
       }
     };
     fetchData();
-  }, [dispatch]);
+  }, [dispatch, t]);
   if (loading) {
     return <Waiting />;
   }

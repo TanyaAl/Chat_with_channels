@@ -5,6 +5,8 @@ import { useTranslation } from 'react-i18next';
 import { Modal, Form, FormGroup, FormControl, Button } from 'react-bootstrap';
 import { actions as channelsActions } from '../../../store/channelsSlice';
 import { getChannelValidation } from '../../../utils/validation';
+import { toast } from 'react-toastify';
+import profanityFilter from '../../../utils/profanityFilter';
 
 const Rename = ({ data, onClose }) => {
   const dispatch = useDispatch();
@@ -19,10 +21,16 @@ const Rename = ({ data, onClose }) => {
 
     onSubmit: (values) => {
       try {
-        dispatch(channelsActions.renameChannel(values));
+        const checkValue = {
+          name: profanityFilter.clean(values.name),
+          id: data.id,
+        };
+        dispatch(channelsActions.renameChannel(checkValue));
+        toast.success(t('toastify.renameChannelSuccess'));
         onClose();
       } catch (error) {
-        console.error(`Не удалось переименовать канал:, ${error}`);
+        console.error(`${t('network')}: ${error}`);
+        toast.error(t('network'));
       } finally {
         formik.setSubmitting(false);
       }

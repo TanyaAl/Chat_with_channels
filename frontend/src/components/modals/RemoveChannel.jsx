@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 import getAuthHeader from '../../../utils/auth';
+import { toast } from 'react-toastify';
 
 const Remove = ({ data, onClose }) => {
   const { channels } = useSelector((state) => state.channelsReducer);
@@ -14,9 +15,11 @@ const Remove = ({ data, onClose }) => {
       await axios.delete(`/api/v1/channels/${channelToRemove.id}`, {
         headers: getAuthHeader(),
       });
+      toast.success(t('toastify.removeChannelSuccess'));
       onClose();
     } catch (error) {
-      console.error(`Не удалось удалить канал, попробуйте позже: ${error}`);
+      console.error(`${t('network')}: ${error}`);
+      toast.error(t('network'));
     }
   };
   return (

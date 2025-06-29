@@ -6,6 +6,8 @@ import getAuthHeader from '../../../utils/auth';
 import axios from 'axios';
 import { getChannelValidation } from '../../../utils/validation';
 import { useTranslation } from 'react-i18next';
+import { toast } from 'react-toastify';
+import profanityFilter from '../../../utils/profanityFilter';
 
 const Add = ({ onClose }) => {
   const inputEl = useRef(null);
@@ -21,15 +23,17 @@ const Add = ({ onClose }) => {
     initialValues: { name: '' },
     validationSchema: validationSchema,
     onSubmit: async (values) => {
-      const newChannel = { name: values.name };
+      const newChannel = { name: profanityFilter.clean(values.name) };
       try {
         await axios.post('/api/v1/channels', newChannel, {
           headers: getAuthHeader(),
         });
+        toast.success(t('toastify.addChannelSuccess'));
         formik.resetForm();
         onClose();
       } catch (error) {
-        console.error(t('network'), error);
+        console.error(`${t('network')}: ${error}`);
+        toast.error(t('network'));
       } finally {
         formik.setSubmitting(false);
       }

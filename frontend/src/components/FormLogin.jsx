@@ -33,7 +33,7 @@ const FormLogin = () => {
         navigate('/');
         formik.resetForm();
       } catch (err) {
-        formik.setErrors({ auth: 'Неверные имя пользователя или пароль' });
+        formik.setErrors({ auth: t('validation.auth') });
         if (err.isAxiosError && err.response.status === 401) {
           inputEl.current.select();
         }
@@ -54,7 +54,7 @@ const FormLogin = () => {
               <Form.Group className="form-floating mb-3">
                 <Form.Control
                   onChange={formik.handleChange}
-                  placeholder="Ваш ник"
+                  placeholder={t('interface_texts.forms.username')}
                   value={formik.values.username}
                   ref={inputEl}
                   type="text"
@@ -62,19 +62,23 @@ const FormLogin = () => {
                   required
                   onBlur={formik.onBlur}
                 />
-                <Form.Label htmlFor="username">Ваш ник</Form.Label>
+                <Form.Label htmlFor="username">
+                  {t('interface_texts.forms.username')}
+                </Form.Label>
               </Form.Group>
               <Form.Group className="form-floating mb-4">
                 <Form.Control
                   onChange={formik.handleChange}
-                  placeholder="Пароль"
+                  placeholder={t('interface_texts.forms.password')}
                   value={formik.values.password}
                   type="password"
                   name="password"
                   required
                   onBlur={formik.onBlur}
                 />
-                <Form.Label htmlFor="password">Пароль</Form.Label>
+                <Form.Label htmlFor="password">
+                  {t('interface_texts.forms.password')}
+                </Form.Label>
                 {formik.errors.auth && (
                   <div className="text-center text-danger">
                     {formik.errors.auth}

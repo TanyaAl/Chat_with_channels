@@ -46,14 +46,16 @@ const FormSignUp = () => {
         <div className="col-sm-12">
           <Form onSubmit={formik.handleSubmit} className="p-3">
             <fieldset>
-              <h1 className="text-center mb-4">Регистрация</h1>
+              <h1 className="text-center mb-4">
+                {t('interface_texts.forms.formTitleSignup')}
+              </h1>
               <Form.Group className="form-floating mb-3">
                 <Form.Control
                   onChange={(e) => {
                     formik.setFieldTouched('username', true, false);
                     formik.handleChange(e);
                   }}
-                  placeholder="Имя пользователя"
+                  placeholder={t('interface_texts.forms.newUsername')}
                   value={formik.values.username}
                   ref={inputEl}
                   type="text"
@@ -64,7 +66,9 @@ const FormSignUp = () => {
                 {formik.touched.username && formik.errors.username && (
                   <div className="text-danger">{formik.errors.username}</div>
                 )}
-                <Form.Label htmlFor="username">Имя пользователя</Form.Label>
+                <Form.Label htmlFor="username">
+                  {t('interface_texts.forms.newUsername')}
+                </Form.Label>
               </Form.Group>
               <Form.Group className="form-floating mb-3">
                 <Form.Control
@@ -73,7 +77,7 @@ const FormSignUp = () => {
                     formik.setFieldTouched('password', true, false);
                     formik.handleChange(e);
                   }}
-                  placeholder="Пароль"
+                  placeholder={t('interface_texts.forms.password')}
                   value={formik.values.password}
                   type="password"
                   name="password"
@@ -83,12 +87,14 @@ const FormSignUp = () => {
                 {formik.touched.password && formik.errors.password && (
                   <div className="text-danger">{formik.errors.password}</div>
                 )}
-                <Form.Label htmlFor="password">Пароль</Form.Label>
+                <Form.Label htmlFor="password">
+                  {t('interface_texts.forms.password')}
+                </Form.Label>
               </Form.Group>
               <Form.Group className="form-floating mb-4">
                 <Form.Control
                   onChange={formik.handleChange}
-                  placeholder="Повторите пароль"
+                  placeholder={t('interface_texts.forms.repeatPassword')}
                   value={formik.values.repeatPassword}
                   type="password"
                   name="repeatPassword"
@@ -102,7 +108,7 @@ const FormSignUp = () => {
                     </div>
                   )}
                 <Form.Label htmlFor="repeatPassword">
-                  Повторите пароль
+                  {t('interface_texts.forms.repeatPassword')}
                 </Form.Label>
               </Form.Group>
               <Button

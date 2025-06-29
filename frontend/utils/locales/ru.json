@@ -6,9 +6,10 @@
       "maxNameLength": "Имя должно быть не более 20 символов",
       "password": "Пароль не должен быть короче 6 символов",
       "repeatPassword": "Пароли должны совпадать",
-      "withoutDoubles": "Это имя уже занято"
+      "withoutDoubles": "Это имя уже занято",
+      "auth": "Неверные имя пользователя или пароль"
     },
-    "network": "Ошибка сети",
+    "network": "Ошибка сети, попробуйте позже",
     "interface_texts": {
       "headerBtn": "Выйти",
       "loginPageBtn": "Войти",
@@ -17,6 +18,9 @@
       "signupBtn": "Зарегистрироваться",
       "signupTitle": "Регистрация",
       "chatPageChannels": "Каналы",
+      "notFoundPage": "Страница не найдена",
+      "notFoundBut": "Но вы можете",
+      "notFoundLink": "перейти на главную страницу",
       "messages": {
         "key_zero": "{{count}} сообщений",
         "key_one": "{{count}} сообщение",
@@ -30,9 +34,26 @@
         "areYouSure": "Уверены?",
         "btnDiscard": "Отменить",
         "btnRemove": "Удалить",
-        "btnSend": "Отправить"
+        "btnSend": "Отправить",
+        "menuRemove": "Удалить",
+        "menuRename": "Переименовать",
+        "menuManage": "Управление каналом"
       },
-      "forms": {}
+      "forms": {
+        "writeMessage": "Введите сообщение...",
+        "newMessage": "Новое сообщение",
+        "sendMessage": "Отправить",
+        "username": "Ваш ник",
+        "newUsername": "Имя пользователя",
+        "password": "Пароль",
+        "repeatPassword": "Повторите пароль",
+        "formTitleSignup": "Регистрация"
+      }
+    },
+    "toastify": {
+      "addChannelSuccess": "Вы успешно создали канал",
+      "renameChannelSuccess": "Вы успешно переименовали канал",
+      "removeChannelSuccess": "Вы успешно удалили канал"
     }
   }
 }
