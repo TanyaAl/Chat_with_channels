@@ -27,7 +27,7 @@ const Channel = ({ channel }) => {
     <div className="d-flex btn-group ">
       <Button
         onClick={handleClick}
-        aria-label={channel.name}
+        name={channel.name}
         type="button"
         className={`${classBtn} text-truncate `}
       >
