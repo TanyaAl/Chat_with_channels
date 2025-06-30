@@ -48,7 +48,10 @@
         "newUsername": "Имя пользователя",
         "password": "Пароль",
         "repeatPassword": "Подтвердите пароль",
-        "formTitleSignup": "Регистрация"
+        "formTitleSignup": "Регистрация",
+        "placeHolderUsername": "От 3 до 20 символов",
+        "placeHolderPassword": "Не менее 6 символов",
+        "placeHolderRepestPassword": "Пароли должны совпадать"
       }
     },
     "toastify": {

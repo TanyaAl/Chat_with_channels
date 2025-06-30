@@ -53,7 +53,7 @@ const FormSignUp = () => {
                     formik.setFieldTouched('username', true, false);
                     formik.handleChange(e);
                   }}
-                  placeholder={t('interface_texts.forms.newUsername')}
+                  placeholder={t('interface_texts.forms.placeHolderUsername')}
                   value={formik.values.username}
                   ref={inputEl}
                   type="text"
@@ -75,7 +75,7 @@ const FormSignUp = () => {
                     formik.setFieldTouched('password', true, false);
                     formik.handleChange(e);
                   }}
-                  placeholder={t('interface_texts.forms.password')}
+                  placeholder={t('interface_texts.forms.placeHolderPassword')}
                   value={formik.values.password}
                   type="password"
                   name="password"
@@ -92,7 +92,9 @@ const FormSignUp = () => {
               <Form.Group className="form-floating mb-4">
                 <Form.Control
                   onChange={formik.handleChange}
-                  placeholder={t('interface_texts.forms.repeatPassword')}
+                  placeholder={t(
+                    'interface_texts.forms.placeHolderRepestPassword',
+                  )}
                   value={formik.values.repeatPassword}
                   type="password"
                   name="repeatPassword"
