@@ -47,7 +47,7 @@
         "username": "Ваш ник",
         "newUsername": "Имя пользователя",
         "password": "Пароль",
-        "repeatPassword": "Повторите пароль",
+        "repeatPassword": "Подтвердите пароль",
         "formTitleSignup": "Регистрация"
       }
     },
