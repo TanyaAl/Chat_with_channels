@@ -51,9 +51,10 @@ const Add = ({ onClose }) => {
         </Modal.Header>
         <Modal.Body>
           <Form onSubmit={formik.handleSubmit}>
-            <FormGroup>
+            <FormGroup controlId="name">
               <FormControl
                 name="name"
+                id="name"
                 value={formik.values.name}
                 onChange={(e) => {
                   formik.setFieldTouched('name', true, false);
