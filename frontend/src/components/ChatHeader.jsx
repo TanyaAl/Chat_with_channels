@@ -12,7 +12,6 @@ const ChatHeader = () => {
   const countMessages = useSelector(
     (state) => state.messagesReducer.messages,
   ).filter((message) => message.channelId === activeId).length;
-  console.log('LENGTH', countMessages);
 
   return (
     <div className="bg-light p-3 shadow-sm small">

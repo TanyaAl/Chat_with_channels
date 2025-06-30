@@ -9,7 +9,6 @@ const Menu = ({ className, channel }) => {
 
   const handleClickRename = (data) => {
     const renaming = { type: 'renaming', data: data };
-    console.log('RENAME', renaming);
     dispatch(modalsActions.openModal(renaming));
   };
 

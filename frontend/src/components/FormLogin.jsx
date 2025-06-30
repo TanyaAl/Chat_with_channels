@@ -5,14 +5,11 @@ import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 import useAuth from '../hooks/index.jsx';
-import { useDispatch } from 'react-redux';
-import { actions as usersActions } from '../../store/usersSlice.js';
 
 const FormLogin = () => {
   const inputEl = useRef(null);
   const navigate = useNavigate();
   const auth = useAuth();
-  const dispatch = useDispatch();
   const { t } = useTranslation();
 
   useEffect(() => {
@@ -28,7 +25,6 @@ const FormLogin = () => {
           password: values.password,
         });
         localStorage.setItem('user', JSON.stringify(response.data));
-        dispatch(usersActions.addUser(values));
         auth.logIn();
         navigate('/');
         formik.resetForm();

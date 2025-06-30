@@ -23,6 +23,7 @@ const Add = ({ onClose }) => {
     initialValues: { name: '' },
     validationSchema: validationSchema,
     onSubmit: async (values) => {
+      console.log('VALUES', values);
       const newChannel = { name: profanityFilter.clean(values.name) };
       try {
         await axios.post('/api/v1/channels', newChannel, {
@@ -39,6 +40,9 @@ const Add = ({ onClose }) => {
       }
     },
   });
+
+  const isSubmitDisabled = formik.values.name.trim() === '';
+  console.log('ISDISABLES', isSubmitDisabled);
 
   return (
     <div>
@@ -75,7 +79,11 @@ const Add = ({ onClose }) => {
               >
                 {t('interface_texts.modals.btnDiscard')}
               </Button>
-              <Button type="submit" className="btn btn-primary mt-3">
+              <Button
+                type="submit"
+                className="btn btn-primary mt-3"
+                disabled={isSubmitDisabled}
+              >
                 {t('interface_texts.modals.btnSend')}
               </Button>
             </div>

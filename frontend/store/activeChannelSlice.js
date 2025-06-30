@@ -8,7 +8,6 @@ const activeChannelSlice = createSlice({
   initialState,
   reducers: {
     setActiveChannelId(state, { payload }) {
-      console.log('STORE_ACTIVE_ID', payload);
       state.activeChannelId = payload;
     },
   },

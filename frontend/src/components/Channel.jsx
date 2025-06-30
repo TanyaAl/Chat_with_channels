@@ -9,10 +9,6 @@ const Channel = ({ channel }) => {
     (state) => state.activeChannelReducer.activeChannelId,
   );
 
-  console.log(
-    `Channel ${channel.name} (ID: ${channel.id}) - activeChannelId: ${activeChannelId}`,
-  );
-  console.log(`Is active? ${activeChannelId === channel.id}`);
   const handleClick = () => {
     dispatch(activeChannelIdActions.setActiveChannelId(channel.id));
   };

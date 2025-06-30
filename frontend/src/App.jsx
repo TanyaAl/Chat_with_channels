@@ -3,6 +3,7 @@ import ChatPage from './pages/ChatPage';
 import NotFoundPage from './pages/NotFoundPage';
 import SignUpPage from './pages/SignUpPage.jsx';
 import NavBar from './components/NavBar.jsx';
+import { Spinner } from 'react-bootstrap';
 import ModalRenderer from '../../frontend/src/components/modals/ModalRenderer.jsx';
 import { useState, useEffect } from 'react';
 import {
@@ -32,7 +33,7 @@ const AuthProvider = ({ children }) => {
     setLoggedIn(false);
   };
   if (isLoading) {
-    return <div>Загрузка...</div>;
+    return <Spinner />;
   }
   return (
     <AuthContext.Provider value={{ loggedIn, logIn, logOut }}>

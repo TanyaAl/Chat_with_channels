@@ -43,6 +43,8 @@ const Rename = ({ data, onClose }) => {
     inputEl.current.select();
   }, []);
 
+  const isSubmitDisabled = formik.values.name.trim() === '';
+
   return (
     <div>
       <Modal centered show onHide={onClose} backdrop={true} keyboard={true}>
@@ -78,7 +80,11 @@ const Rename = ({ data, onClose }) => {
               >
                 {t('interface_texts.modals.btnDiscard')}
               </Button>
-              <Button type="submit" className="btn btn-primary mt-3">
+              <Button
+                type="submit"
+                className="btn btn-primary mt-3"
+                disabled={isSubmitDisabled}
+              >
                 {t('interface_texts.modals.btnSend')}
               </Button>
             </div>
