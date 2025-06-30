@@ -29,7 +29,6 @@ const ChatPage = () => {
             ),
           );
         }
-
         const responseMessages = await axios.get('/api/v1/messages', {
           headers: getAuthHeader(),
         });

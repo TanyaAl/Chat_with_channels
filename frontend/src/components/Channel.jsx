@@ -4,6 +4,7 @@ import { actions as activeChannelIdActions } from '../../store/activeChannelSlic
 import Menu from './modals/Menu';
 
 const Channel = ({ channel }) => {
+  console.log(channel);
   const dispatch = useDispatch();
   const activeChannelId = useSelector(
     (state) => state.activeChannelReducer.activeChannelId,
@@ -28,6 +29,7 @@ const Channel = ({ channel }) => {
       <Button
         onClick={handleClick}
         name={channel.name}
+        aria-label={channel.name}
         type="button"
         className={`${classBtn} text-truncate `}
       >
