@@ -30,7 +30,8 @@ const Channel = ({ channel }) => {
         type="button"
         className={`${classBtn} text-truncate `}
       >
-        <span className="me-3"># {channel.name}</span>
+        <span className="me-1">#</span>
+        {channel.name}
       </Button>
       {channel.removable === true && (
         <Menu className={classToggle} channel={channel} />
