@@ -47,11 +47,11 @@
         "username": "Ваш ник",
         "newUsername": "Имя пользователя",
         "password": "Пароль",
-        "repeatPassword": "Подтвердите пароль",
+        "confirmPassword": "Подтвердите пароль",
         "formTitleSignup": "Регистрация",
         "placeHolderUsername": "От 3 до 20 символов",
         "placeHolderPassword": "Не менее 6 символов",
-        "placeHolderRepestPassword": "Пароли должны совпадать"
+        "placeHolderConfirmPassword": "Пароли должны совпадать"
       }
     },
     "toastify": {

@@ -50,17 +50,19 @@ const FormSignUp = () => {
               <Form.Group className="form-floating mb-3" controlId="username">
                 <Form.Control
                   onChange={(e) => {
-                    formik.setFieldTouched('username', true, false);
+                    // formik.setFieldTouched('username', true, false);
                     formik.handleChange(e);
                   }}
                   placeholder={t('interface_texts.forms.placeHolderUsername')}
                   value={formik.values.username}
                   ref={inputEl}
                   type="text"
+                  name="username"
+                  id="username"
                   required
                   onBlur={formik.onBlur}
                 />
-                <Form.Label>
+                <Form.Label htmlFor="username">
                   {t('interface_texts.forms.newUsername')}
                 </Form.Label>
                 {formik.touched.username && formik.errors.username && (
@@ -71,16 +73,20 @@ const FormSignUp = () => {
                 <Form.Control
                   className="mb-3"
                   onChange={(e) => {
-                    formik.setFieldTouched('password', true, false);
+                    // formik.setFieldTouched('password', true, false);
                     formik.handleChange(e);
                   }}
                   placeholder={t('interface_texts.forms.placeHolderPassword')}
                   value={formik.values.password}
                   type="password"
+                  name="password"
+                  id="password"
                   required
                   onBlur={formik.onBlur}
                 />
-                <Form.Label>{t('interface_texts.forms.password')}</Form.Label>
+                <Form.Label htmlFor="password">
+                  {t('interface_texts.forms.password')}
+                </Form.Label>
                 {formik.touched.password && formik.errors.password && (
                   <div className="text-danger">{formik.errors.password}</div>
                 )}
@@ -92,15 +98,17 @@ const FormSignUp = () => {
                 <Form.Control
                   onChange={formik.handleChange}
                   placeholder={t(
-                    'interface_texts.forms.placeHolderRepestPassword',
+                    'interface_texts.forms.placeHolderConfirmPassword',
                   )}
                   value={formik.values.repeatPassword}
                   type="password"
+                  name="confirmPassword"
+                  id="confirmPassword"
                   required
                   onBlur={formik.onBlur}
                 />
-                <Form.Label>
-                  {t('interface_texts.forms.repeatPassword')}
+                <Form.Label htmlFor="confirmPassword">
+                  {t('interface_texts.forms.confirmPassword')}
                 </Form.Label>
                 {formik.touched.repeatPassword &&
                   formik.errors.repeatPassword && (
