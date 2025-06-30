@@ -6,8 +6,8 @@ const getChannelValidation = (t, names) => {
       .string()
       .trim()
       .required(t('validation.requiredField'))
-      .min(3, t('validation.minNameLength'))
-      .max(20, t('validation.maxNameLength'))
+      .min(3, t('validation.nameLength'))
+      .max(20, t('validation.nameLength'))
       .notOneOf(names, t('validation.withoutDoubles')),
   });
 };
@@ -17,8 +17,8 @@ const getSignUpValidation = (t) => {
     username: yup
       .string()
       .required(t('validation.requiredField'))
-      .min(3, t('validation.minNameLength'))
-      .max(20, t('validation.maxNameLength')),
+      .min(3, t('validation.nameLength'))
+      .max(20, t('validation.nameLength')),
     password: yup
       .string()
       .required(t('validation.requiredField'))
