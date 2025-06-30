@@ -1,6 +1,8 @@
 import filter from 'leo-profanity';
 
-filter.loadDictionary('ru');
-filter.add('fucking');
+const ru = filter.getDictionary('ru');
+const en = filter.getDictionary('en');
+
+filter.addDictionary([...ru, ...en]);
 
 export default filter;
