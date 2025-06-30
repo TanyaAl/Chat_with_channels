@@ -56,6 +56,7 @@ const Rename = ({ data, onClose }) => {
             <FormGroup>
               <FormControl
                 name="name"
+                id="name"
                 value={formik.values.name}
                 onChange={(e) => {
                   formik.setFieldTouched('name', true, false);
