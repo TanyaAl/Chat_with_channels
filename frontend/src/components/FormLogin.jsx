@@ -47,7 +47,7 @@ const FormLogin = () => {
               <h1 className="text-center mb-4">
                 {t('interface_texts.loginPageBtn')}
               </h1>
-              <Form.Group className="form-floating mb-3">
+              <Form.Group className="form-floating mb-3" controlId="username">
                 <Form.Control
                   onChange={formik.handleChange}
                   placeholder={t('interface_texts.forms.username')}
@@ -55,6 +55,7 @@ const FormLogin = () => {
                   ref={inputEl}
                   type="text"
                   name="username"
+                  id="username"
                   required
                   onBlur={formik.onBlur}
                 />
@@ -62,7 +63,7 @@ const FormLogin = () => {
                   {t('interface_texts.forms.username')}
                 </Form.Label>
               </Form.Group>
-              <Form.Group className="form-floating mb-4">
+              <Form.Group className="form-floating mb-4" controlId="password">
                 <Form.Control
                   onChange={formik.handleChange}
                   placeholder={t('interface_texts.forms.password')}
