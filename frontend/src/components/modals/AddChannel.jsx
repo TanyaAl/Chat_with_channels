@@ -65,7 +65,7 @@ const Add = ({ onClose }) => {
                 onBlur={formik.handleBlur}
                 isInvalid={formik.errors.name}
               />
-              <Form.Label htmlFor="name" className="visually-hidden">
+              <Form.Label htmlFor="name">
                 {t('interface_texts.modals.channelName')}
               </Form.Label>
               {formik.errors.name ? (
