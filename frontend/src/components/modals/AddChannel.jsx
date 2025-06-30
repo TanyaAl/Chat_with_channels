@@ -82,15 +82,13 @@ const Add = ({ onClose }) => {
             <div className="d-flex justify-content-end">
               <Button
                 onClick={() => onClose()}
-                className="btn btn-secondary me-3 mt-3"
-              >
+                className="btn btn-secondary me-3 mt-3">
                 {t('interface_texts.modals.btnDiscard')}
               </Button>
               <Button
                 type="submit"
                 className="btn btn-primary mt-3"
-                disabled={isSubmitDisabled}
-              >
+                disabled={isSubmitDisabled}>
                 {t('interface_texts.modals.btnSend')}
               </Button>
             </div>
