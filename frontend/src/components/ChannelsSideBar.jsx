@@ -21,7 +21,7 @@ const ChannelsSideBar = () => {
           className="p-0 bg-white border border-light text-primary"
         >
           <i className="bi bi-plus-square"></i>
-          <span className="visually-hidden">+</span>
+          <span>+</span>
         </Button>
       </div>
       <ul
