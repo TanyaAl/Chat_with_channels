@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { useFormik } from 'formik';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Modal, Form, FormGroup, FormControl, Button } from 'react-bootstrap';
 import getAuthHeader from '../../../utils/auth';
 import axios from 'axios';
@@ -8,8 +8,10 @@ import { getChannelValidation } from '../../../utils/validation';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import profanityFilter from '../../../utils/profanityFilter';
+import { actions as activeChannelActions } from '../../../store/activeChannelSlice';
 
 const Add = ({ onClose }) => {
+  const dispatch = useDispatch();
   const inputEl = useRef(null);
   const { channels } = useSelector((state) => state.channelsReducer);
   const { t } = useTranslation();
@@ -26,9 +28,11 @@ const Add = ({ onClose }) => {
       console.log('VALUES', values);
       const newChannel = { name: profanityFilter.clean(values.name) };
       try {
-        await axios.post('/api/v1/channels', newChannel, {
+        const response = await axios.post('/api/v1/channels', newChannel, {
           headers: getAuthHeader(),
         });
+        console.log('QQQ', response);
+        dispatch(activeChannelActions.setActiveChannelId(response.data.id));
         toast.success(t('toastify.addChannelSuccess'));
         formik.resetForm();
         onClose();
