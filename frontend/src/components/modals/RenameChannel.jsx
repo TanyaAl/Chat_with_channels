@@ -67,6 +67,9 @@ const Rename = ({ data, onClose }) => {
                 onBlur={formik.handleBlur}
                 isInvalid={formik.errors.name}
               />
+              <Form.Label htmlFor="name" className="visually-hidden">
+                {t('interface_texts.modals.channelName')}
+              </Form.Label>
               {formik.errors.name ? (
                 <Form.Control.Feedback type="invalid">
                   {formik.errors.name}

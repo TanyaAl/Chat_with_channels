@@ -42,7 +42,6 @@ const Add = ({ onClose }) => {
   });
 
   const isSubmitDisabled = formik.values.name.trim() === '';
-  console.log('ISDISABLES', isSubmitDisabled);
 
   return (
     <div>
@@ -66,6 +65,9 @@ const Add = ({ onClose }) => {
                 onBlur={formik.handleBlur}
                 isInvalid={formik.errors.name}
               />
+              <Form.Label htmlFor="name" className="visually-hidden">
+                {t('interface_texts.modals.channelName')}
+              </Form.Label>
               {formik.errors.name ? (
                 <FormControl.Feedback type="invalid">
                   {formik.errors.name}

@@ -4,12 +4,12 @@
       "requiredField": "Поле не должно быть пустым",
       "minNameLength": "Имя должно быть не менее 3 символов",
       "maxNameLength": "Имя должно быть не более 20 символов",
-      "password": "Пароль не должен быть короче 6 символов",
+      "password": "Не менее 6 символов",
       "repeatPassword": "Пароли должны совпадать",
       "withoutDoubles": "Это имя уже занято",
       "auth": "Неверные имя пользователя или пароль"
     },
-    "network": "Ошибка сети, попробуйте позже",
+    "network": "Ошибка соединения",
     "interface_texts": {
       "headerBtn": "Выйти",
       "loginPageBtn": "Войти",
@@ -37,7 +37,8 @@
         "btnSend": "Отправить",
         "menuRemove": "Удалить",
         "menuRename": "Переименовать",
-        "menuManage": "Управление каналом"
+        "menuManage": "Управление каналом",
+        "channelName": "Имя канала"
       },
       "forms": {
         "writeMessage": "Введите сообщение...",
@@ -51,9 +52,9 @@
       }
     },
     "toastify": {
-      "addChannelSuccess": "Вы успешно создали канал",
-      "renameChannelSuccess": "Вы успешно переименовали канал",
-      "removeChannelSuccess": "Вы успешно удалили канал"
+      "addChannelSuccess": "Канал создан",
+      "renameChannelSuccess": "Канал переименован",
+      "removeChannelSuccess": "Канал удалён"
     }
   }
 }

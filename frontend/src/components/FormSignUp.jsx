@@ -24,7 +24,6 @@ const FormSignUp = () => {
           username: values.username,
           password: values.password,
         });
-        console.log('NEWUSER', response);
         localStorage.setItem('user', JSON.stringify(response.data));
         auth.logIn();
         navigate('/');
@@ -38,7 +37,6 @@ const FormSignUp = () => {
       }
     },
   });
-  console.log('Форма валидна:', formik.isValid, 'Ошибки:', formik.errors);
 
   return (
     <div className="container-fluid">
@@ -63,12 +61,12 @@ const FormSignUp = () => {
                   required
                   onBlur={formik.onBlur}
                 />
-                {formik.touched.username && formik.errors.username && (
-                  <div className="text-danger">{formik.errors.username}</div>
-                )}
                 <Form.Label htmlFor="username">
                   {t('interface_texts.forms.newUsername')}
                 </Form.Label>
+                {formik.touched.username && formik.errors.username && (
+                  <div className="text-danger">{formik.errors.username}</div>
+                )}
               </Form.Group>
               <Form.Group className="form-floating mb-3">
                 <Form.Control
@@ -84,12 +82,12 @@ const FormSignUp = () => {
                   required
                   onBlur={formik.onBlur}
                 />
-                {formik.touched.password && formik.errors.password && (
-                  <div className="text-danger">{formik.errors.password}</div>
-                )}
                 <Form.Label htmlFor="password">
                   {t('interface_texts.forms.password')}
                 </Form.Label>
+                {formik.touched.password && formik.errors.password && (
+                  <div className="text-danger">{formik.errors.password}</div>
+                )}
               </Form.Group>
               <Form.Group className="form-floating mb-4">
                 <Form.Control
@@ -101,15 +99,15 @@ const FormSignUp = () => {
                   required
                   onBlur={formik.onBlur}
                 />
+                <Form.Label htmlFor="repeatPassword">
+                  {t('interface_texts.forms.repeatPassword')}
+                </Form.Label>
                 {formik.touched.repeatPassword &&
                   formik.errors.repeatPassword && (
                     <div className="text-danger">
                       {formik.errors.repeatPassword}
                     </div>
                   )}
-                <Form.Label htmlFor="repeatPassword">
-                  {t('interface_texts.forms.repeatPassword')}
-                </Form.Label>
               </Form.Group>
               <Button
                 type="submit"

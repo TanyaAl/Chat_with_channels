@@ -1,11 +1,13 @@
-start-backend:
+start:
 	npx start-server -s ./frontend/dist
-start-frontend:
-	cd frontend && npm run dev
-build:
-	cd frontend && npm ci && npm run build
 install:
 	npm ci
+	cd frontend && npm ci
+build:
+	cd frontend && npm run build
+dev:
+	cd frontend && npm run dev
+
 
 
 
