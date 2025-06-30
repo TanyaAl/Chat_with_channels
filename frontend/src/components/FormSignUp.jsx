@@ -97,11 +97,11 @@ const FormSignUp = () => {
                   )}
                   value={formik.values.repeatPassword}
                   type="password"
-                  name="repeatPassword"
+                  name="confirmPassword"
                   required
                   onBlur={formik.onBlur}
                 />
-                <Form.Label htmlFor="repeatPassword">
+                <Form.Label htmlFor="confirmPassword">
                   {t('interface_texts.forms.repeatPassword')}
                 </Form.Label>
                 {formik.touched.repeatPassword &&
