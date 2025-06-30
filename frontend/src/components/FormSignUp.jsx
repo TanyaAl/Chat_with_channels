@@ -93,22 +93,22 @@ const FormSignUp = () => {
               </Form.Group>
               <Form.Group
                 className="form-floating mb-4"
-                controlId="confirmPassword"
+                controlId="repeatPassword"
               >
                 <Form.Control
                   onChange={formik.handleChange}
                   placeholder={t(
-                    'interface_texts.forms.placeHolderConfirmPassword',
+                    'interface_texts.forms.placeHolderRepeatPassword',
                   )}
                   value={formik.values.repeatPassword}
                   type="password"
-                  name="confirmPassword"
-                  id="confirmPassword"
+                  name="repeatPassword"
+                  id="repeatPassword"
                   required
                   onBlur={formik.onBlur}
                 />
-                <Form.Label htmlFor="confirmPassword">
-                  {t('interface_texts.forms.confirmPassword')}
+                <Form.Label htmlFor="repeatPassword">
+                  {t('interface_texts.forms.repeatPassword')}
                 </Form.Label>
                 {formik.touched.repeatPassword &&
                   formik.errors.repeatPassword && (
