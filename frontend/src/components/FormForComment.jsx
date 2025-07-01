@@ -7,6 +7,7 @@ import getAuthHeader from '../../utils/auth'
 import axios from 'axios'
 import { toast } from 'react-toastify'
 import profanityFilter from '../../utils/profanityFilter'
+import routes from '../routes/index'
 
 const FormForComment = () => {
   const inputEl = useRef(null)
@@ -30,7 +31,7 @@ const FormForComment = () => {
         username: user.username,
       }
       try {
-        await axios.post('/api/v1/messages', message, {
+        await axios.post(routes.messagesPath(), message, {
           headers: getAuthHeader(),
         })
 

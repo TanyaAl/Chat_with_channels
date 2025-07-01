@@ -9,6 +9,7 @@ import { useTranslation } from 'react-i18next'
 import { toast } from 'react-toastify'
 import profanityFilter from '../../../utils/profanityFilter'
 import { actions as activeChannelActions } from '../../../store/activeChannelSlice'
+import routes from '../../routes/index'
 
 const Add = ({ onClose }) => {
   const dispatch = useDispatch()
@@ -25,13 +26,11 @@ const Add = ({ onClose }) => {
     initialValues: { name: '' },
     validationSchema: validationSchema,
     onSubmit: async (values) => {
-      console.log('VALUES', values)
       const newChannel = { name: profanityFilter.clean(values.name) }
       try {
-        const response = await axios.post('/api/v1/channels', newChannel, {
+        const response = await axios.post(routes.channelsPath(), newChannel, {
           headers: getAuthHeader(),
         })
-        console.log('QQQ', response)
         dispatch(activeChannelActions.setActiveChannelId(response.data.id))
         toast.success(t('toastify.addChannelSuccess'))
         formik.resetForm()
@@ -59,7 +58,7 @@ const Add = ({ onClose }) => {
         </Modal.Header>
         <Modal.Body>
           <Form onSubmit={formik.handleSubmit}>
-            <FormGroup controlId="name">
+            <FormGroup>
               <FormControl
                 name="name"
                 id="name"

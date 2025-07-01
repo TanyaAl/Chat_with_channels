@@ -4,7 +4,6 @@ import { actions as activeChannelIdActions } from '../../store/activeChannelSlic
 import Menu from './modals/Menu'
 
 const Channel = ({ channel }) => {
-  console.log(channel)
   const dispatch = useDispatch()
   const activeChannelId = useSelector(
     state => state.activeChannelReducer.activeChannelId,

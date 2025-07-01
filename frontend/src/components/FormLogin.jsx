@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import axios from 'axios'
 import useAuth from '../hooks/index.jsx'
+import routes from '../routes/index.js'
 
 const FormLogin = () => {
   const inputEl = useRef(null)
@@ -20,7 +21,7 @@ const FormLogin = () => {
     initialValues: { username: '', password: '' },
     onSubmit: async (values) => {
       try {
-        const response = await axios.post('/api/v1/login', {
+        const response = await axios.post(routes.loginPath(), {
           username: values.username,
           password: values.password,
         })
@@ -48,7 +49,7 @@ const FormLogin = () => {
               <h1 className="text-center mb-4">
                 {t('interface_texts.loginPageBtn')}
               </h1>
-              <Form.Group className="form-floating mb-3" controlId="username">
+              <Form.Group className="form-floating mb-3">
                 <Form.Control
                   onChange={formik.handleChange}
                   placeholder={t('interface_texts.forms.username')}
@@ -64,7 +65,7 @@ const FormLogin = () => {
                   {t('interface_texts.forms.username')}
                 </Form.Label>
               </Form.Group>
-              <Form.Group className="form-floating mb-4" controlId="password">
+              <Form.Group className="form-floating mb-4">
                 <Form.Control
                   onChange={formik.handleChange}
                   placeholder={t('interface_texts.forms.password')}

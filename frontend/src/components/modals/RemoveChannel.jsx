@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next'
 import axios from 'axios'
 import getAuthHeader from '../../../utils/auth'
 import { toast } from 'react-toastify'
+import routes from '../../routes/index'
 
 const Remove = ({ data, onClose }) => {
   const { channels } = useSelector(state => state.channelsReducer)
@@ -12,7 +13,7 @@ const Remove = ({ data, onClose }) => {
 
   const handleClickRemove = async () => {
     try {
-      await axios.delete(`/api/v1/channels/${channelToRemove.id}`, {
+      await axios.delete(`${routes.channelsPath()}${channelToRemove.id}`, {
         headers: getAuthHeader(),
       })
       toast.success(t('toastify.removeChannelSuccess'))

@@ -9,6 +9,7 @@ import { actions as activeChannelIdActions } from '../../store/activeChannelSlic
 import ChatMain from '../components/ChatMain.jsx'
 import Waiting from '../components/Spinner.jsx'
 import getAuthHeader from '../../utils/auth.js'
+import routes from '../routes/index.js'
 
 const ChatPage = () => {
   const dispatch = useDispatch()
@@ -17,13 +18,11 @@ const ChatPage = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      console.log('Fetching data...')
       try {
-        const responseChannels = await axios.get('/api/v1/channels', {
+        const responseChannels = await axios.get(routes.channelsPath(), {
           headers: getAuthHeader(),
         })
         dispatch(channelActions.setChannels(responseChannels.data))
-        console.log('Loaded channels:', responseChannels.data)
         if (responseChannels.data.length > 0) {
           dispatch(
             activeChannelIdActions.setActiveChannelId(
@@ -31,7 +30,7 @@ const ChatPage = () => {
             ),
           )
         }
-        const responseMessages = await axios.get('/api/v1/messages', {
+        const responseMessages = await axios.get(routes.messagesPath(), {
           headers: getAuthHeader(),
         })
         dispatch(messagesActions.setMessages(responseMessages.data))

@@ -6,6 +6,7 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import useAuth from '../hooks/index.jsx'
 import { useTranslation } from 'react-i18next'
+import routes from '../routes/index.js'
 
 const FormSignUp = () => {
   const inputEl = useRef(null)
@@ -20,7 +21,7 @@ const FormSignUp = () => {
     validationSchema: validationSchema,
     onSubmit: async (values) => {
       try {
-        const response = await axios.post('/api/v1/signup', {
+        const response = await axios.post(routes.signupPath(), {
           username: values.username,
           password: values.password,
         })
@@ -48,10 +49,9 @@ const FormSignUp = () => {
               <h1 className="text-center mb-4">
                 {t('interface_texts.forms.formTitleSignup')}
               </h1>
-              <Form.Group className="form-floating mb-3" controlId="username">
+              <Form.Group className="form-floating mb-3">
                 <Form.Control
                   onChange={(e) => {
-                    // formik.setFieldTouched('username', true, false);
                     formik.handleChange(e)
                   }}
                   placeholder={t('interface_texts.forms.placeHolderUsername')}
@@ -72,11 +72,10 @@ const FormSignUp = () => {
                   </div>
                 )}
               </Form.Group>
-              <Form.Group className="form-floating mb-3" controlId="password">
+              <Form.Group className="form-floating mb-3">
                 <Form.Control
                   className="mb-3"
                   onChange={(e) => {
-                    // formik.setFieldTouched('password', true, false);
                     formik.handleChange(e)
                   }}
                   placeholder={t('interface_texts.forms.placeHolderPassword')}
@@ -98,7 +97,6 @@ const FormSignUp = () => {
               </Form.Group>
               <Form.Group
                 className="form-floating mb-4"
-                controlId="repeatPassword"
               >
                 <Form.Control
                   onChange={formik.handleChange}
