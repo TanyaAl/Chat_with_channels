@@ -72,6 +72,7 @@ const FormLogin = () => {
                   value={formik.values.password}
                   type="password"
                   name="password"
+                  id="password"
                   required
                   onBlur={formik.onBlur}
                 />
