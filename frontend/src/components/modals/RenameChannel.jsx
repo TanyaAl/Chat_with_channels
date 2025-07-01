@@ -28,10 +28,12 @@ const Rename = ({ data, onClose }) => {
         dispatch(channelsActions.renameChannel(checkValue))
         toast.success(t('toastify.renameChannelSuccess'))
         onClose()
-      } catch (error) {
+      }
+      catch (error) {
         console.error(`${t('network')}: ${error}`)
         toast.error(t('network'))
-      } finally {
+      }
+      finally {
         formik.setSubmitting(false)
       }
     },
@@ -75,10 +77,10 @@ const Rename = ({ data, onClose }) => {
               </Form.Label>
               {formik.errors.name
                 ? (
-                  <Form.Control.Feedback type="invalid">
-                    {formik.errors.name}
-                  </Form.Control.Feedback>
-                )
+                    <Form.Control.Feedback type="invalid">
+                      {formik.errors.name}
+                    </Form.Control.Feedback>
+                  )
                 : null}
             </FormGroup>
             <div className="d-flex justify-content-end">

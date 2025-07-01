@@ -10,8 +10,8 @@ const ModalRenderer = () => {
 
   return isOpen
     ? (
-      <Modal data={data} onClose={() => dispatch(modalsActions.closeModal())} />
-    )
+        <Modal data={data} onClose={() => dispatch(modalsActions.closeModal())} />
+      )
     : null
 }
 

@@ -36,10 +36,12 @@ const Add = ({ onClose }) => {
         toast.success(t('toastify.addChannelSuccess'))
         formik.resetForm()
         onClose()
-      } catch (error) {
+      }
+      catch (error) {
         console.error(`${t('network')}: ${error}`)
         toast.error(t('network'))
-      } finally {
+      }
+      finally {
         formik.setSubmitting(false)
       }
     },
@@ -77,10 +79,10 @@ const Add = ({ onClose }) => {
               </Form.Label>
               {formik.errors.name
                 ? (
-                  <FormControl.Feedback type="invalid">
-                    {formik.errors.name}
-                  </FormControl.Feedback>
-                )
+                    <FormControl.Feedback type="invalid">
+                      {formik.errors.name}
+                    </FormControl.Feedback>
+                  )
                 : null}
             </FormGroup>
             <div className="d-flex justify-content-end">

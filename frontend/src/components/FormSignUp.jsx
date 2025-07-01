@@ -28,7 +28,8 @@ const FormSignUp = () => {
         auth.logIn()
         navigate('/')
         formik.resetForm()
-      } catch (err) {
+      }
+      catch (err) {
         console.error(t('network'), err)
         if (err.response && err.response.status === 409) {
           formik.setFieldError('username', t('validation.withoutDoubles'))

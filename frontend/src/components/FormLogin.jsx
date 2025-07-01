@@ -28,7 +28,8 @@ const FormLogin = () => {
         auth.logIn()
         navigate('/')
         formik.resetForm()
-      } catch (err) {
+      }
+      catch (err) {
         formik.setErrors({ auth: t('validation.auth') })
         if (err.isAxiosError && err.response.status === 401) {
           inputEl.current.select()

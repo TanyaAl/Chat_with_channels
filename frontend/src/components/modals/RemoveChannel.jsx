@@ -17,7 +17,8 @@ const Remove = ({ data, onClose }) => {
       })
       toast.success(t('toastify.removeChannelSuccess'))
       onClose()
-    } catch (error) {
+    }
+    catch (error) {
       console.error(`${t('network')}: ${error}`)
       toast.error(t('network'))
     }

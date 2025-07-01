@@ -36,7 +36,8 @@ const ChatPage = () => {
         })
         dispatch(messagesActions.setMessages(responseMessages.data))
         setLoading(false)
-      } catch (err) {
+      }
+      catch (err) {
         console.error(`${t('network')}, ${err}`)
         toast.error(t('network'))
         setLoading(false)

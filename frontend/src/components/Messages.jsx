@@ -19,7 +19,8 @@ const Messages = () => {
         {message.body}
       </div>
     ))
-  } else {
+  }
+  else {
     return null
   }
 }

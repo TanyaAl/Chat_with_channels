@@ -48,11 +48,11 @@ const PrivateRoute = ({ children }) => {
 
   return auth.loggedIn
     ? (
-      children
-    )
+        children
+      )
     : (
-      <Navigate to="/login" state={{ from: location }} />
-    )
+        <Navigate to="/login" state={{ from: location }} />
+      )
 }
 
 const App = () => {
@@ -64,11 +64,11 @@ const App = () => {
           <Routes>
             <Route
               path="/"
-              element={
+              element={(
                 <PrivateRoute>
                   <ChatPage />
                 </PrivateRoute>
-              }
+              )}
             />
             <Route path="*" element={<NotFoundPage />} />
             <Route path="/login" element={<LoginPage />} />

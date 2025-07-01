@@ -35,7 +35,8 @@ const FormForComment = () => {
         })
 
         formik.resetForm()
-      } catch (err) {
+      }
+      catch (err) {
         console.error(`${t('network')}, ${err}`)
         toast.error(t('network'))
       }
