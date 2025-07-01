@@ -1,19 +1,19 @@
-import { useEffect, useRef } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useFormik } from 'formik';
-import { useTranslation } from 'react-i18next';
-import { Modal, Form, FormGroup, FormControl, Button } from 'react-bootstrap';
-import { actions as channelsActions } from '../../../store/channelsSlice';
-import { getChannelValidation } from '../../../utils/validation';
-import { toast } from 'react-toastify';
-import profanityFilter from '../../../utils/profanityFilter';
+import { useEffect, useRef } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useFormik } from 'formik'
+import { useTranslation } from 'react-i18next'
+import { Modal, Form, FormGroup, FormControl, Button } from 'react-bootstrap'
+import { actions as channelsActions } from '../../../store/channelsSlice'
+import { getChannelValidation } from '../../../utils/validation'
+import { toast } from 'react-toastify'
+import profanityFilter from '../../../utils/profanityFilter'
 
 const Rename = ({ data, onClose }) => {
-  const dispatch = useDispatch();
-  const { t } = useTranslation();
-  const { channels } = useSelector((state) => state.channelsReducer);
-  const names = channels.map((channel) => channel.name);
-  const validationSchema = getChannelValidation(t, names);
+  const dispatch = useDispatch()
+  const { t } = useTranslation()
+  const { channels } = useSelector((state) => state.channelsReducer)
+  const names = channels.map((channel) => channel.name)
+  const validationSchema = getChannelValidation(t, names)
 
   const formik = useFormik({
     initialValues: { name: data.name, id: data.id },
@@ -24,26 +24,26 @@ const Rename = ({ data, onClose }) => {
         const checkValue = {
           name: profanityFilter.clean(values.name),
           id: data.id,
-        };
-        dispatch(channelsActions.renameChannel(checkValue));
-        toast.success(t('toastify.renameChannelSuccess'));
-        onClose();
+        }
+        dispatch(channelsActions.renameChannel(checkValue))
+        toast.success(t('toastify.renameChannelSuccess'))
+        onClose()
       } catch (error) {
-        console.error(`${t('network')}: ${error}`);
-        toast.error(t('network'));
+        console.error(`${t('network')}: ${error}`)
+        toast.error(t('network'))
       } finally {
-        formik.setSubmitting(false);
+        formik.setSubmitting(false)
       }
     },
-  });
+  })
 
-  const inputEl = useRef(null);
+  const inputEl = useRef(null)
   useEffect(() => {
-    inputEl.current.focus();
-    inputEl.current.select();
-  }, []);
+    inputEl.current.focus()
+    inputEl.current.select()
+  }, [])
 
-  const isSubmitDisabled = formik.values.name.trim() === '';
+  const isSubmitDisabled = formik.values.name.trim() === ''
 
   return (
     <div>
@@ -59,8 +59,8 @@ const Rename = ({ data, onClose }) => {
                 id="name"
                 value={formik.values.name}
                 onChange={(e) => {
-                  formik.setFieldTouched('name', true, false);
-                  formik.handleChange(e);
+                  formik.setFieldTouched('name', true, false)
+                  formik.handleChange(e)
                 }}
                 required
                 data-testid="input-name"
@@ -80,15 +80,13 @@ const Rename = ({ data, onClose }) => {
             <div className="d-flex justify-content-end">
               <Button
                 onClick={() => onClose()}
-                className="btn btn-secondary me-3 mt-3"
-              >
+                className="btn btn-secondary me-3 mt-3">
                 {t('interface_texts.modals.btnDiscard')}
               </Button>
               <Button
                 type="submit"
                 className="btn btn-primary mt-3"
-                disabled={isSubmitDisabled}
-              >
+                disabled={isSubmitDisabled}>
                 {t('interface_texts.modals.btnSend')}
               </Button>
             </div>
@@ -96,6 +94,6 @@ const Rename = ({ data, onClose }) => {
         </Modal.Body>
       </Modal>
     </div>
-  );
-};
-export default Rename;
+  )
+}
+export default Rename

@@ -1,10 +1,10 @@
-import { Navbar, Container, Button } from 'react-bootstrap';
-import useAuth from '../hooks/index.jsx';
-import { useTranslation } from 'react-i18next';
+import { Navbar, Container, Button } from 'react-bootstrap'
+import useAuth from '../hooks/index.jsx'
+import { useTranslation } from 'react-i18next'
 
 const NavBar = () => {
-  const auth = useAuth();
-  const { t } = useTranslation();
+  const auth = useAuth()
+  const { t } = useTranslation()
   return (
     <Navbar
       expand="lg"
@@ -23,6 +23,6 @@ const NavBar = () => {
         )}
       </Container>
     </Navbar>
-  );
-};
-export default NavBar;
+  )
+}
+export default NavBar

@@ -1,7 +1,7 @@
-import { Container } from 'react-bootstrap';
-import ChatHeader from './ChatHeader.jsx';
-import ChannelsSideBar from './ChannelsSideBar.jsx';
-import MessagesBox from './MessagesBox.jsx';
+import { Container } from 'react-bootstrap'
+import ChatHeader from './ChatHeader.jsx'
+import ChannelsSideBar from './ChannelsSideBar.jsx'
+import MessagesBox from './MessagesBox.jsx'
 
 const ChatMain = () => {
   return (
@@ -18,7 +18,7 @@ const ChatMain = () => {
         </div>
       </div>
     </Container>
-  );
-};
+  )
+}
 
-export default ChatMain;
+export default ChatMain

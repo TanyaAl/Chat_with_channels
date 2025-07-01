@@ -1,19 +1,19 @@
-import { useFormik } from 'formik';
-import { Form, Button } from 'react-bootstrap';
-import { useRef, useEffect } from 'react';
-import { getSignUpValidation } from '../../utils/validation';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-import useAuth from '../hooks/index.jsx';
-import { useTranslation } from 'react-i18next';
+import { useFormik } from 'formik'
+import { Form, Button } from 'react-bootstrap'
+import { useRef, useEffect } from 'react'
+import { getSignUpValidation } from '../../utils/validation'
+import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
+import useAuth from '../hooks/index.jsx'
+import { useTranslation } from 'react-i18next'
 
 const FormSignUp = () => {
-  const inputEl = useRef(null);
-  const navigate = useNavigate();
-  const auth = useAuth();
-  const { t } = useTranslation();
-  useEffect(() => inputEl.current.focus(), []);
-  const validationSchema = getSignUpValidation(t);
+  const inputEl = useRef(null)
+  const navigate = useNavigate()
+  const auth = useAuth()
+  const { t } = useTranslation()
+  useEffect(() => inputEl.current.focus(), [])
+  const validationSchema = getSignUpValidation(t)
 
   const formik = useFormik({
     initialValues: { username: '', password: '', repeatPassword: '' },
@@ -23,20 +23,20 @@ const FormSignUp = () => {
         const response = await axios.post('/api/v1/signup', {
           username: values.username,
           password: values.password,
-        });
-        localStorage.setItem('user', JSON.stringify(response.data));
-        auth.logIn();
-        navigate('/');
-        formik.resetForm();
+        })
+        localStorage.setItem('user', JSON.stringify(response.data))
+        auth.logIn()
+        navigate('/')
+        formik.resetForm()
       } catch (err) {
-        console.error(t('network'), err);
+        console.error(t('network'), err)
         if (err.response && err.response.status === 409) {
-          formik.setFieldError('username', t('validation.withoutDoubles'));
+          formik.setFieldError('username', t('validation.withoutDoubles'))
         }
-        throw err;
+        throw err
       }
     },
-  });
+  })
 
   return (
     <div className="container-fluid">
@@ -51,7 +51,7 @@ const FormSignUp = () => {
                 <Form.Control
                   onChange={(e) => {
                     // formik.setFieldTouched('username', true, false);
-                    formik.handleChange(e);
+                    formik.handleChange(e)
                   }}
                   placeholder={t('interface_texts.forms.placeHolderUsername')}
                   value={formik.values.username}
@@ -74,7 +74,7 @@ const FormSignUp = () => {
                   className="mb-3"
                   onChange={(e) => {
                     // formik.setFieldTouched('password', true, false);
-                    formik.handleChange(e);
+                    formik.handleChange(e)
                   }}
                   placeholder={t('interface_texts.forms.placeHolderPassword')}
                   value={formik.values.password}
@@ -112,10 +112,10 @@ const FormSignUp = () => {
                 </Form.Label>
                 {formik.touched.repeatPassword &&
                   formik.errors.repeatPassword && (
-                    <div className="text-danger">
-                      {formik.errors.repeatPassword}
-                    </div>
-                  )}
+                  <div className="text-danger">
+                    {formik.errors.repeatPassword}
+                  </div>
+                )}
               </Form.Group>
               <Button
                 type="submit"
@@ -129,7 +129,7 @@ const FormSignUp = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default FormSignUp;
+export default FormSignUp

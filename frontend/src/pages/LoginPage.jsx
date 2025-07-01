@@ -1,9 +1,9 @@
-import loginPage from '../assets/avatar.jpg';
-import FormLogin from '../components/FormLogin';
-import { useTranslation } from 'react-i18next';
+import loginPage from '../assets/avatar.jpg'
+import FormLogin from '../components/FormLogin'
+import { useTranslation } from 'react-i18next'
 
 const LoginPage = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation()
   return (
     <div className="d-flex flex-column h-100">
       <div className="container-fluid h-100">
@@ -33,6 +33,6 @@ const LoginPage = () => {
         </div>
       </div>
     </div>
-  );
-};
-export default LoginPage;
+  )
+}
+export default LoginPage

@@ -1,27 +1,27 @@
-import { Modal, Button } from 'react-bootstrap';
-import { useSelector } from 'react-redux';
-import { useTranslation } from 'react-i18next';
-import axios from 'axios';
-import getAuthHeader from '../../../utils/auth';
-import { toast } from 'react-toastify';
+import { Modal, Button } from 'react-bootstrap'
+import { useSelector } from 'react-redux'
+import { useTranslation } from 'react-i18next'
+import axios from 'axios'
+import getAuthHeader from '../../../utils/auth'
+import { toast } from 'react-toastify'
 
 const Remove = ({ data, onClose }) => {
-  const { channels } = useSelector((state) => state.channelsReducer);
-  const { t } = useTranslation();
-  const channelToRemove = channels.find((channel) => channel.id === data);
+  const { channels } = useSelector((state) => state.channelsReducer)
+  const { t } = useTranslation()
+  const channelToRemove = channels.find((channel) => channel.id === data)
 
   const handleClickRemove = async () => {
     try {
       await axios.delete(`/api/v1/channels/${channelToRemove.id}`, {
         headers: getAuthHeader(),
-      });
-      toast.success(t('toastify.removeChannelSuccess'));
-      onClose();
+      })
+      toast.success(t('toastify.removeChannelSuccess'))
+      onClose()
     } catch (error) {
-      console.error(`${t('network')}: ${error}`);
-      toast.error(t('network'));
+      console.error(`${t('network')}: ${error}`)
+      toast.error(t('network'))
     }
-  };
+  }
   return (
     <div>
       <Modal centered show onHide={onClose} backdrop={true} keyboard={true}>
@@ -52,6 +52,6 @@ const Remove = ({ data, onClose }) => {
         </Modal.Body>
       </Modal>
     </div>
-  );
-};
-export default Remove;
+  )
+}
+export default Remove

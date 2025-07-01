@@ -1,5 +1,5 @@
-import FormSignUp from '../components/FormSignUp';
-import signUpAvatar from '../assets/SignUp.jpg';
+import FormSignUp from '../components/FormSignUp'
+import signUpAvatar from '../assets/SignUp.jpg'
 
 const SignUpPage = () => {
   return (
@@ -25,7 +25,7 @@ const SignUpPage = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default SignUpPage;
+export default SignUpPage

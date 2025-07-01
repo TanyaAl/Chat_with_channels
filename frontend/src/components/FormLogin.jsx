@@ -1,20 +1,20 @@
-import { useFormik } from 'formik';
-import { Form, Button } from 'react-bootstrap';
-import { useRef, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
-import axios from 'axios';
-import useAuth from '../hooks/index.jsx';
+import { useFormik } from 'formik'
+import { Form, Button } from 'react-bootstrap'
+import { useRef, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
+import axios from 'axios'
+import useAuth from '../hooks/index.jsx'
 
 const FormLogin = () => {
-  const inputEl = useRef(null);
-  const navigate = useNavigate();
-  const auth = useAuth();
-  const { t } = useTranslation();
+  const inputEl = useRef(null)
+  const navigate = useNavigate()
+  const auth = useAuth()
+  const { t } = useTranslation()
 
   useEffect(() => {
-    inputEl.current.focus();
-  }, []);
+    inputEl.current.focus()
+  }, [])
 
   const formik = useFormik({
     initialValues: { username: '', password: '' },
@@ -23,20 +23,20 @@ const FormLogin = () => {
         const response = await axios.post('/api/v1/login', {
           username: values.username,
           password: values.password,
-        });
-        localStorage.setItem('user', JSON.stringify(response.data));
-        auth.logIn();
-        navigate('/');
-        formik.resetForm();
+        })
+        localStorage.setItem('user', JSON.stringify(response.data))
+        auth.logIn()
+        navigate('/')
+        formik.resetForm()
       } catch (err) {
-        formik.setErrors({ auth: t('validation.auth') });
+        formik.setErrors({ auth: t('validation.auth') })
         if (err.isAxiosError && err.response.status === 401) {
-          inputEl.current.select();
+          inputEl.current.select()
         }
-        throw err;
+        throw err
       }
     },
-  });
+  })
 
   return (
     <div className="container-fluid">
@@ -94,7 +94,7 @@ const FormLogin = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default FormLogin;
+export default FormLogin

@@ -1,9 +1,9 @@
-import errorPage from '../assets/404.svg';
-import { Link } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
+import errorPage from '../assets/404.svg'
+import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 
 const NotFoundPage = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation()
   return (
     <div style={{ padding: '2rem', textAlign: 'center' }}>
       <img
@@ -17,7 +17,7 @@ const NotFoundPage = () => {
         <Link to="/"> {t('interface_texts.notFoundLink')}</Link>
       </p>
     </div>
-  );
-};
+  )
+}
 
-export default NotFoundPage;
+export default NotFoundPage

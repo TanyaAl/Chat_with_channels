@@ -1,17 +1,17 @@
-import { useSelector } from 'react-redux';
-import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux'
+import { useTranslation } from 'react-i18next'
 
 const ChatHeader = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation()
   const activeId = useSelector(
     (state) => state.activeChannelReducer.activeChannelId,
-  );
-  const channels = useSelector((state) => state.channelsReducer.channels);
-  const activeTitle = channels.find((channel) => channel.id === activeId);
+  )
+  const channels = useSelector((state) => state.channelsReducer.channels)
+  const activeTitle = channels.find((channel) => channel.id === activeId)
 
   const countMessages = useSelector(
     (state) => state.messagesReducer.messages,
-  ).filter((message) => message.channelId === activeId).length;
+  ).filter((message) => message.channelId === activeId).length
 
   return (
     <div className="bg-light p-3 shadow-sm small">
@@ -22,7 +22,7 @@ const ChatHeader = () => {
         {t('interface_texts.messages.key', { count: countMessages })}
       </span>
     </div>
-  );
-};
+  )
+}
 
-export default ChatHeader;
+export default ChatHeader

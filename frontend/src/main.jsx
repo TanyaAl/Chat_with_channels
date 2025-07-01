@@ -1,22 +1,22 @@
-import { createRoot } from 'react-dom/client';
-import App from './App.jsx';
-import { Provider } from 'react-redux';
-import store from '../store/index.js';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap-icons/font/bootstrap-icons.css';
-import './App.css';
-import { init } from './init.jsx';
-import { I18nextProvider } from 'react-i18next';
-import { i18next } from './init.jsx';
-import { ToastContainer, Bounce } from 'react-toastify';
-import { Provider as RollbarProvider, ErrorBoundary } from '@rollbar/react';
+import { createRoot } from 'react-dom/client'
+import App from './App.jsx'
+import { Provider } from 'react-redux'
+import store from '../store/index.js'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap-icons/font/bootstrap-icons.css'
+import './App.css'
+import { init } from './init.jsx'
+import { I18nextProvider } from 'react-i18next'
+import { i18next } from './init.jsx'
+import { ToastContainer, Bounce } from 'react-toastify'
+import { Provider as RollbarProvider, ErrorBoundary } from '@rollbar/react'
 
-const { socket } = init();
+const { socket } = init()
 
 const rollbarConfig = {
   accessToken: 'REACT_APP_ROLLBAR_TOKEN',
   environment: 'prod',
-};
+}
 
 createRoot(document.getElementById('root')).render(
   <RollbarProvider config={rollbarConfig}>
@@ -42,4 +42,4 @@ createRoot(document.getElementById('root')).render(
       ,
     </ErrorBoundary>
   </RollbarProvider>,
-);
+)

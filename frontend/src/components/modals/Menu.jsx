@@ -1,21 +1,21 @@
-import Dropdown from 'react-bootstrap/Dropdown';
-import { useDispatch } from 'react-redux';
-import { actions as modalsActions } from '../../../store/modalsSlice';
-import { useTranslation } from 'react-i18next';
+import Dropdown from 'react-bootstrap/Dropdown'
+import { useDispatch } from 'react-redux'
+import { actions as modalsActions } from '../../../store/modalsSlice'
+import { useTranslation } from 'react-i18next'
 
 const Menu = ({ className, channel }) => {
-  const dispatch = useDispatch();
-  const { t } = useTranslation();
+  const dispatch = useDispatch()
+  const { t } = useTranslation()
 
   const handleClickRename = (data) => {
-    const renaming = { type: 'renaming', data: data };
-    dispatch(modalsActions.openModal(renaming));
-  };
+    const renaming = { type: 'renaming', data: data }
+    dispatch(modalsActions.openModal(renaming))
+  }
 
   const handleClickRemove = (channel) => {
-    const removing = { type: 'removing', data: channel.id };
-    dispatch(modalsActions.openModal(removing));
-  };
+    const removing = { type: 'removing', data: channel.id }
+    dispatch(modalsActions.openModal(removing))
+  }
   return (
     <Dropdown>
       <Dropdown.Toggle
@@ -37,7 +37,7 @@ const Menu = ({ className, channel }) => {
         </Dropdown.Item>
       </Dropdown.Menu>
     </Dropdown>
-  );
-};
+  )
+}
 
-export default Menu;
+export default Menu

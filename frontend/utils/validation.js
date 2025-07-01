@@ -1,4 +1,4 @@
-import * as yup from 'yup';
+import * as yup from 'yup'
 
 const getChannelValidation = (t, names) => {
   return yup.object().shape({
@@ -9,8 +9,8 @@ const getChannelValidation = (t, names) => {
       .min(3, t('validation.nameLength'))
       .max(20, t('validation.nameLength'))
       .notOneOf(names, t('validation.withoutDoubles')),
-  });
-};
+  })
+}
 
 const getSignUpValidation = (t) => {
   return yup.object().shape({
@@ -26,7 +26,7 @@ const getSignUpValidation = (t) => {
     repeatPassword: yup
       .string()
       .oneOf([yup.ref('password'), null], t('validation.repeatPassword')),
-  });
-};
+  })
+}
 
-export { getChannelValidation, getSignUpValidation };
+export { getChannelValidation, getSignUpValidation }

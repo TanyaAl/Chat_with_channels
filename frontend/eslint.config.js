@@ -1,50 +1,30 @@
-import globals from 'globals';
-import pluginJs from '@eslint/js';
-import pluginReact from 'eslint-plugin-react';
-import pluginReactHooks from 'eslint-plugin-react-hooks';
-import pluginJsxA11y from 'eslint-plugin-jsx-a11y';
-import stylistic from '@stylistic/eslint-plugin';
+import js from '@eslint/js'
+import globals from 'globals'
+import pluginReact from 'eslint-plugin-react'
+import { defineConfig } from 'eslint/config'
+import stylistic from '@stylistic/eslint-plugin'
 
-export default [
+export default defineConfig([
   {
     ignores: ['node_modules/', 'dist', 'build'],
   },
+  pluginReact.configs.flat.recommended,
   {
-    files: ['**/*.js', '**/*.jsx'],
-    languageOptions: {
-      parserOptions: {
-        ecmaFeatures: {
-          jsx: true,
-        },
-        ecmaVersion: 'latest',
-        sourceType: 'module',
-      },
-      globals: {
-        ...globals.browser,
-        ...globals.node,
-        __REACT_DEVTOOLS_GLOBAL_HOOK__: 'readonly',
-      },
-    },
-    plugins: {
-      react: pluginReact,
-      'react-hooks': pluginReactHooks,
-      'jsx-a11y': pluginJsxA11y,
-    },
-    rules: {
-      ...pluginJs.configs.recommended.rules,
-      ...pluginReact.configs.recommended.rules,
-      ...pluginReactHooks.configs.recommended.rules,
-      ...pluginJsxA11y.configs.recommended.rules,
+    files: ['**/*.{js,mjs,cjs,jsx}'],
+    plugins: { js, '@stylistic': stylistic },
+    extends: ['js/recommended'],
 
+    rules: {
+      indent: ['error', 2],
+      '@stylistic/indent': ['error', 2],
+      '@stylistic/semi': ['error', 'never'],
       'react/react-in-jsx-scope': 'off',
       'react/prop-types': 'off',
       'no-empty': 'error',
     },
-    settings: {
-      react: {
-        version: 'detect',
-      },
-    },
   },
-  stylistic.configs.recommended,
-];
+  {
+    files: ['**/*.{js,mjs,cjs,jsx}'],
+    languageOptions: { globals: globals.browser },
+  },
+])
