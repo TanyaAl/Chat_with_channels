@@ -24,7 +24,7 @@ const Add = ({ onClose }) => {
   const formik = useFormik({
     initialValues: { name: '' },
     validationSchema: validationSchema,
-    onSubmit: async values => {
+    onSubmit: async (values) => {
       console.log('VALUES', values)
       const newChannel = { name: profanityFilter.clean(values.name) }
       try {
@@ -62,7 +62,7 @@ const Add = ({ onClose }) => {
                 name="name"
                 id="name"
                 value={formik.values.name}
-                onChange={e => {
+                onChange={(e) => {
                   formik.setFieldTouched('name', true, false)
                   formik.handleChange(e)
                 }}

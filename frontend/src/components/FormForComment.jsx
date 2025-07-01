@@ -23,7 +23,7 @@ const FormForComment = () => {
       channelId: null,
       username: null,
     },
-    onSubmit: async values => {
+    onSubmit: async (values) => {
       const message = {
         body: profanityFilter.clean(values.body),
         channelId: activeChannel,

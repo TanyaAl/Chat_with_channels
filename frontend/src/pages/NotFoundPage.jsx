@@ -16,7 +16,7 @@ const NotFoundPage = () => {
       </h1>
       <p>
         {t('interface_texts.notFoundBut')}
-        <Link to="/"> 
+        <Link to="/">
           {' '}
           {t('interface_texts.notFoundLink')}
         </Link>

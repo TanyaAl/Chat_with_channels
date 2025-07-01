@@ -15,7 +15,7 @@ const modalsSlice = createSlice({
       state.isOpen = true
       state.data = payload.data
     },
-    closeModal: state => {
+    closeModal: (state) => {
       state.type = null
       state.isOpen = false
       state.data = null

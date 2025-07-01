@@ -18,7 +18,7 @@ const FormSignUp = () => {
   const formik = useFormik({
     initialValues: { username: '', password: '', repeatPassword: '' },
     validationSchema: validationSchema,
-    onSubmit: async values => {
+    onSubmit: async (values) => {
       try {
         const response = await axios.post('/api/v1/signup', {
           username: values.username,
@@ -49,7 +49,7 @@ const FormSignUp = () => {
               </h1>
               <Form.Group className="form-floating mb-3" controlId="username">
                 <Form.Control
-                  onChange={e => {
+                  onChange={(e) => {
                     // formik.setFieldTouched('username', true, false);
                     formik.handleChange(e)
                   }}
@@ -74,7 +74,7 @@ const FormSignUp = () => {
               <Form.Group className="form-floating mb-3" controlId="password">
                 <Form.Control
                   className="mb-3"
-                  onChange={e => {
+                  onChange={(e) => {
                     // formik.setFieldTouched('password', true, false);
                     formik.handleChange(e)
                   }}
@@ -114,8 +114,8 @@ const FormSignUp = () => {
                 <Form.Label htmlFor="repeatPassword">
                   {t('interface_texts.forms.repeatPassword')}
                 </Form.Label>
-                {formik.touched.repeatPassword &&
-                  formik.errors.repeatPassword && (
+                {formik.touched.repeatPassword
+                  && formik.errors.repeatPassword && (
                   <div className="text-danger">
                     {formik.errors.repeatPassword}
                   </div>

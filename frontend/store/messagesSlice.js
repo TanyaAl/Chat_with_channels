@@ -15,7 +15,7 @@ const messagesSlice = createSlice({
       state.messages.push(payload)
     },
   },
-  extraReducers: builder => {
+  extraReducers: (builder) => {
     builder.addCase(channelsActions.removeChannel, (state, { payload }) => {
       const channelId = payload.id
       state.messages = state.messages.filter(

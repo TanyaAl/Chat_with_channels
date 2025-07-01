@@ -7,12 +7,12 @@ const Menu = ({ className, channel }) => {
   const dispatch = useDispatch()
   const { t } = useTranslation()
 
-  const handleClickRename = data => {
+  const handleClickRename = (data) => {
     const renaming = { type: 'renaming', data: data }
     dispatch(modalsActions.openModal(renaming))
   }
 
-  const handleClickRemove = channel => {
+  const handleClickRemove = (channel) => {
     const removing = { type: 'removing', data: channel.id }
     dispatch(modalsActions.openModal(removing))
   }

@@ -14,13 +14,13 @@ const Channel = ({ channel }) => {
     dispatch(activeChannelIdActions.setActiveChannelId(channel.id))
   }
 
-  const classBtn =
-    activeChannelId === channel.id
+  const classBtn
+    = activeChannelId === channel.id
       ? 'rounded-0 text-start btn btn-secondary'
       : 'rounded-0 text-start btn btn-light'
 
-  const classToggle =
-    activeChannelId === channel.id
+  const classToggle
+    = activeChannelId === channel.id
       ? 'btn-secondary rounded-0'
       : 'btn-light rounded-0'
 

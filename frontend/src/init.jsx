@@ -9,13 +9,13 @@ import resources from './../utils/locales/index'
 
 const init = () => {
   const socket = io()
-  socket.on('newMessage', payload => {
+  socket.on('newMessage', (payload) => {
     store.dispatch(messagesActions.addMessage(payload))
   })
-  socket.on('newChannel', payload => {
+  socket.on('newChannel', (payload) => {
     store.dispatch(channelsActions.addChannel(payload))
   })
-  socket.on('removeChannel', payload => {
+  socket.on('removeChannel', (payload) => {
     const { id } = payload
     const state = store.getState()
     const activId = state.activeChannelReducer.activeChannelId
@@ -24,7 +24,7 @@ const init = () => {
     }
     store.dispatch(channelsActions.removeChannel(payload))
   })
-  socket.on('renameChannel', payload => {
+  socket.on('renameChannel', (payload) => {
     store.dispatch(channelsActions.renameChannel(payload))
   })
   return { socket }
