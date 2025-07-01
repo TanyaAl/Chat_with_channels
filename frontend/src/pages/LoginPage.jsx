@@ -24,8 +24,13 @@ const LoginPage = () => {
               </div>
               <div className="card-footer p-4">
                 <div className="text-center">
-                  <span>{t('interface_texts.loginPageQuestion')} </span>
-                  <a href="/signup">{t('interface_texts.loginPageToReg')}</a>
+                  <span>
+                    {t('interface_texts.loginPageQuestion')}
+                    {' '}
+                  </span>
+                  <a href="/signup">
+                    {t('interface_texts.loginPageToReg')}
+                  </a>
                 </div>
               </div>
             </div>

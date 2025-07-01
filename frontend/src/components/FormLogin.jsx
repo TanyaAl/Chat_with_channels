@@ -18,7 +18,7 @@ const FormLogin = () => {
 
   const formik = useFormik({
     initialValues: { username: '', password: '' },
-    onSubmit: async (values) => {
+    onSubmit: async values => {
       try {
         const response = await axios.post('/api/v1/login', {
           username: values.username,

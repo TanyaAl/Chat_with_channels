@@ -6,9 +6,9 @@ import getAuthHeader from '../../../utils/auth'
 import { toast } from 'react-toastify'
 
 const Remove = ({ data, onClose }) => {
-  const { channels } = useSelector((state) => state.channelsReducer)
+  const { channels } = useSelector(state => state.channelsReducer)
   const { t } = useTranslation()
-  const channelToRemove = channels.find((channel) => channel.id === data)
+  const channelToRemove = channels.find(channel => channel.id === data)
 
   const handleClickRemove = async () => {
     try {
@@ -27,13 +27,18 @@ const Remove = ({ data, onClose }) => {
       <Modal centered show onHide={onClose} backdrop={true} keyboard={true}>
         <Modal.Header closeButton>
           <Modal.Title>
-            {t('interface_texts.modals.removeChannel')}{' '}
-            {channelToRemove ? channelToRemove.name : ''}?{' '}
+            {t('interface_texts.modals.removeChannel')}
+            {' '}
+            {channelToRemove ? channelToRemove.name : ''}
+            ?
+            {' '}
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           {' '}
-          <div>{t('interface_texts.modals.areYouSure')}</div>
+          <div>
+            {t('interface_texts.modals.areYouSure')}
+          </div>
           <div className="d-flex justify-content-end">
             <Button
               onClick={() => onClose()}

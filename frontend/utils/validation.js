@@ -12,7 +12,7 @@ const getChannelValidation = (t, names) => {
   })
 }
 
-const getSignUpValidation = (t) => {
+const getSignUpValidation = t => {
   return yup.object().shape({
     username: yup
       .string()

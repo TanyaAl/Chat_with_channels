@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux'
 
 const MessagesBox = () => {
   const messagesBoxRef = useRef(null)
-  const { messages } = useSelector((state) => state.messagesReducer)
+  const { messages } = useSelector(state => state.messagesReducer)
   useEffect(() => {
     messagesBoxRef.current.scrollTop = messagesBoxRef.current.scrollHeight
   }, [messages])

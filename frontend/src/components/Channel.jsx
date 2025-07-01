@@ -7,7 +7,7 @@ const Channel = ({ channel }) => {
   console.log(channel)
   const dispatch = useDispatch()
   const activeChannelId = useSelector(
-    (state) => state.activeChannelReducer.activeChannelId,
+    state => state.activeChannelReducer.activeChannelId,
   )
 
   const handleClick = () => {
@@ -33,7 +33,9 @@ const Channel = ({ channel }) => {
         type="button"
         className={`${classBtn} text-truncate `}
       >
-        <span className="me-1">#</span>
+        <span className="me-1">
+          #
+        </span>
         {channel.name}
       </Button>
       {channel.removable === true && (

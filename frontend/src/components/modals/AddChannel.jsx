@@ -13,9 +13,9 @@ import { actions as activeChannelActions } from '../../../store/activeChannelSli
 const Add = ({ onClose }) => {
   const dispatch = useDispatch()
   const inputEl = useRef(null)
-  const { channels } = useSelector((state) => state.channelsReducer)
+  const { channels } = useSelector(state => state.channelsReducer)
   const { t } = useTranslation()
-  const names = channels.map((channel) => channel.name)
+  const names = channels.map(channel => channel.name)
   const validationSchema = getChannelValidation(t, names)
 
   useEffect(() => {
@@ -24,7 +24,7 @@ const Add = ({ onClose }) => {
   const formik = useFormik({
     initialValues: { name: '' },
     validationSchema: validationSchema,
-    onSubmit: async (values) => {
+    onSubmit: async values => {
       console.log('VALUES', values)
       const newChannel = { name: profanityFilter.clean(values.name) }
       try {
@@ -51,7 +51,9 @@ const Add = ({ onClose }) => {
     <div>
       <Modal centered show onHide={onClose} backdrop={true} keyboard={true}>
         <Modal.Header closeButton>
-          <Modal.Title>{t('interface_texts.modals.addChannel')}</Modal.Title>
+          <Modal.Title>
+            {t('interface_texts.modals.addChannel')}
+          </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form onSubmit={formik.handleSubmit}>
@@ -60,7 +62,7 @@ const Add = ({ onClose }) => {
                 name="name"
                 id="name"
                 value={formik.values.name}
-                onChange={(e) => {
+                onChange={e => {
                   formik.setFieldTouched('name', true, false)
                   formik.handleChange(e)
                 }}
@@ -73,22 +75,26 @@ const Add = ({ onClose }) => {
               <Form.Label className="visually-hidden" htmlFor="name">
                 {t('interface_texts.modals.channelName')}
               </Form.Label>
-              {formik.errors.name ? (
-                <FormControl.Feedback type="invalid">
-                  {formik.errors.name}
-                </FormControl.Feedback>
-              ) : null}
+              {formik.errors.name
+                ? (
+                  <FormControl.Feedback type="invalid">
+                    {formik.errors.name}
+                  </FormControl.Feedback>
+                )
+                : null}
             </FormGroup>
             <div className="d-flex justify-content-end">
               <Button
                 onClick={() => onClose()}
-                className="btn btn-secondary me-3 mt-3">
+                className="btn btn-secondary me-3 mt-3"
+              >
                 {t('interface_texts.modals.btnDiscard')}
               </Button>
               <Button
                 type="submit"
                 className="btn btn-primary mt-3"
-                disabled={isSubmitDisabled}>
+                disabled={isSubmitDisabled}
+              >
                 {t('interface_texts.modals.btnSend')}
               </Button>
             </div>

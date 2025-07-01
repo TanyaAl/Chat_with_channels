@@ -12,7 +12,7 @@ const FormForComment = () => {
   const inputEl = useRef(null)
   const { t } = useTranslation()
   const activeChannel = useSelector(
-    (state) => state.activeChannelReducer.activeChannelId,
+    state => state.activeChannelReducer.activeChannelId,
   )
   useEffect(() => inputEl.current.focus(), [activeChannel])
   const user = JSON.parse(localStorage.getItem('user'))
@@ -23,7 +23,7 @@ const FormForComment = () => {
       channelId: null,
       username: null,
     },
-    onSubmit: async (values) => {
+    onSubmit: async values => {
       const message = {
         body: profanityFilter.clean(values.body),
         channelId: activeChannel,

@@ -18,7 +18,7 @@ const FormSignUp = () => {
   const formik = useFormik({
     initialValues: { username: '', password: '', repeatPassword: '' },
     validationSchema: validationSchema,
-    onSubmit: async (values) => {
+    onSubmit: async values => {
       try {
         const response = await axios.post('/api/v1/signup', {
           username: values.username,
@@ -49,7 +49,7 @@ const FormSignUp = () => {
               </h1>
               <Form.Group className="form-floating mb-3" controlId="username">
                 <Form.Control
-                  onChange={(e) => {
+                  onChange={e => {
                     // formik.setFieldTouched('username', true, false);
                     formik.handleChange(e)
                   }}
@@ -66,13 +66,15 @@ const FormSignUp = () => {
                   {t('interface_texts.forms.newUsername')}
                 </Form.Label>
                 {formik.touched.username && formik.errors.username && (
-                  <div className="text-danger">{formik.errors.username}</div>
+                  <div className="text-danger">
+                    {formik.errors.username}
+                  </div>
                 )}
               </Form.Group>
               <Form.Group className="form-floating mb-3" controlId="password">
                 <Form.Control
                   className="mb-3"
-                  onChange={(e) => {
+                  onChange={e => {
                     // formik.setFieldTouched('password', true, false);
                     formik.handleChange(e)
                   }}
@@ -88,7 +90,9 @@ const FormSignUp = () => {
                   {t('interface_texts.forms.password')}
                 </Form.Label>
                 {formik.touched.password && formik.errors.password && (
-                  <div className="text-danger">{formik.errors.password}</div>
+                  <div className="text-danger">
+                    {formik.errors.password}
+                  </div>
                 )}
               </Form.Group>
               <Form.Group

@@ -11,10 +11,15 @@ const NotFoundPage = () => {
         src={errorPage}
         style={{ maxWidth: '40%', height: 'auto' }}
       />
-      <h1>{t('interface_texts.notFoundPage')}</h1>
+      <h1>
+        {t('interface_texts.notFoundPage')}
+      </h1>
       <p>
         {t('interface_texts.notFoundBut')}
-        <Link to="/"> {t('interface_texts.notFoundLink')}</Link>
+        <Link to="/"> 
+          {' '}
+          {t('interface_texts.notFoundLink')}
+        </Link>
       </p>
     </div>
   )
