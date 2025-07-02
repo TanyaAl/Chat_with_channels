@@ -1,15 +1,16 @@
 import { useEffect, useRef } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { useFormik } from 'formik'
 import { useTranslation } from 'react-i18next'
 import { Modal, Form, FormGroup, FormControl, Button } from 'react-bootstrap'
-import { actions as channelsActions } from '../../../store/channelsSlice'
-import { getChannelValidation } from '../../../utils/validation'
+import { getChannelValidation } from '../../utils/validation'
 import { toast } from 'react-toastify'
-import profanityFilter from '../../../utils/profanityFilter'
+import profanityFilter from '../../utils/profanityFilter'
+import getAuthHeader from '../../utils/auth'
+import axios from 'axios'
+import routes from '../../routes'
 
 const Rename = ({ data, onClose }) => {
-  const dispatch = useDispatch()
   const { t } = useTranslation()
   const { channels } = useSelector(state => state.channelsReducer)
   const names = channels.map(channel => channel.name)
@@ -19,13 +20,16 @@ const Rename = ({ data, onClose }) => {
     initialValues: { name: data.name, id: data.id },
     validationSchema: validationSchema,
 
-    onSubmit: (values) => {
+    onSubmit: async (values) => {
       try {
         const checkValue = {
           name: profanityFilter.clean(values.name),
           id: data.id,
         }
-        dispatch(channelsActions.renameChannel(checkValue))
+        console.log(checkValue)
+        await axios.patch(`${routes.channelsPath()}${checkValue.id}`, {
+          headers: getAuthHeader(),
+        })
         toast.success(t('toastify.renameChannelSuccess'))
         onClose()
       }

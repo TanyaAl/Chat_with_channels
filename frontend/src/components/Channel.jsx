@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { Button } from 'react-bootstrap'
-import { actions as activeChannelIdActions } from '../../store/activeChannelSlice'
+import { actions as activeChannelIdActions } from '../store/activeChannelSlice'
 import Menu from './modals/Menu'
 
 const Channel = ({ channel }) => {

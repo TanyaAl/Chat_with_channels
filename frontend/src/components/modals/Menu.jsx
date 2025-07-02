@@ -1,6 +1,6 @@
 import Dropdown from 'react-bootstrap/Dropdown'
 import { useDispatch } from 'react-redux'
-import { actions as modalsActions } from '../../../store/modalsSlice'
+import { actions as modalsActions } from '../../store/modalsSlice'
 import { useTranslation } from 'react-i18next'
 
 const Menu = ({ className, channel }) => {

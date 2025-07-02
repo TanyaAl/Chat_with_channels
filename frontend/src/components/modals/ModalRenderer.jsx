@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux'
 import modals from './index'
-import { actions as modalsActions } from '../../../store/modalsSlice'
+import { actions as modalsActions } from '../../store/modalsSlice'
 
 const ModalRenderer = () => {
   const dispatch = useDispatch()

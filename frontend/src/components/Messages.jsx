@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux'
+import { useEffect } from 'react'
 
-const Messages = () => {
+const Messages = ({ messagesBoxRef }) => {
   const messages = useSelector(state => state.messagesReducer.messages)
   const activeChannel = useSelector(
     state => state.activeChannelReducer.activeChannelId,
@@ -8,17 +9,25 @@ const Messages = () => {
   const currentMessages = messages.filter(
     message => message.channelId === activeChannel,
   )
+  useEffect(() => {
+    console.log('TOP')
+    messagesBoxRef.current.scrollTop = messagesBoxRef.current.scrollHeight
+  }, [messages, activeChannel])
 
   if (messages.length > 0) {
-    return currentMessages.map(message => (
-      <div key={message.id} className="text-break mb-2">
-        <b>
-          {message.username}
-        </b>
-        :
-        {message.body}
+    return (
+      <div>
+        {currentMessages.map(message => (
+          <div key={message.id} className="text-break mb-2">
+            <b>
+              {message.username}
+            </b>
+            :
+            {message.body}
+          </div>
+        ))}
       </div>
-    ))
+    )
   }
   else {
     return null

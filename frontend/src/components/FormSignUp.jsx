@@ -1,7 +1,7 @@
 import { useFormik } from 'formik'
 import { Form, Button } from 'react-bootstrap'
 import { useRef, useEffect } from 'react'
-import { getSignUpValidation } from '../../utils/validation'
+import { getSignUpValidation } from '../utils/validation.js'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import useAuth from '../hooks/index.jsx'
@@ -62,6 +62,7 @@ const FormSignUp = () => {
                   id="username"
                   required
                   onBlur={formik.onBlur}
+                  autoComplete="off"
                 />
                 <Form.Label htmlFor="username">
                   {t('interface_texts.forms.newUsername')}
@@ -85,6 +86,7 @@ const FormSignUp = () => {
                   id="password"
                   required
                   onBlur={formik.onBlur}
+                  autoComplete="off"
                 />
                 <Form.Label htmlFor="password">
                   {t('interface_texts.forms.password')}
@@ -109,6 +111,7 @@ const FormSignUp = () => {
                   id="repeatPassword"
                   required
                   onBlur={formik.onBlur}
+                  autoComplete="off"
                 />
                 <Form.Label htmlFor="repeatPassword">
                   {t('interface_texts.forms.repeatPassword')}

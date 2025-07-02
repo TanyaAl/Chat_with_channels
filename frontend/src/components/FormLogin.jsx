@@ -60,6 +60,7 @@ const FormLogin = () => {
                   id="username"
                   required
                   onBlur={formik.onBlur}
+                  autoComplete="off"
                 />
                 <Form.Label htmlFor="username">
                   {t('interface_texts.forms.username')}
@@ -75,6 +76,7 @@ const FormLogin = () => {
                   id="password"
                   required
                   onBlur={formik.onBlur}
+                  autoComplete="off"
                 />
                 <Form.Label htmlFor="password">
                   {t('interface_texts.forms.password')}

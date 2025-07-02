@@ -1,14 +1,9 @@
 import FormForComment from './FormForComment'
 import Messages from './Messages'
-import { useRef, useEffect } from 'react'
-import { useSelector } from 'react-redux'
+import { useRef } from 'react'
 
 const MessagesBox = () => {
   const messagesBoxRef = useRef(null)
-  const { messages } = useSelector(state => state.messagesReducer)
-  useEffect(() => {
-    messagesBoxRef.current.scrollTop = messagesBoxRef.current.scrollHeight
-  }, [messages])
   return (
     <>
       <div
@@ -16,7 +11,7 @@ const MessagesBox = () => {
         id="messages-box"
         className="chat-messages flex-grow-1 overflow-auto px-5"
       >
-        <Messages />
+        <Messages messagesBoxRef={messagesBoxRef} />
       </div>
       <div className="mt-auto px-5 py-3">
         <FormForComment />

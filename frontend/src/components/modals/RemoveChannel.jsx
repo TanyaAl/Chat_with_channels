@@ -2,7 +2,7 @@ import { Modal, Button } from 'react-bootstrap'
 import { useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import axios from 'axios'
-import getAuthHeader from '../../../utils/auth'
+import getAuthHeader from '../../utils/auth'
 import { toast } from 'react-toastify'
 import routes from '../../routes/index'
 
@@ -13,6 +13,7 @@ const Remove = ({ data, onClose }) => {
 
   const handleClickRemove = async () => {
     try {
+      console.log(channelToRemove.id)
       await axios.delete(`${routes.channelsPath()}${channelToRemove.id}`, {
         headers: getAuthHeader(),
       })

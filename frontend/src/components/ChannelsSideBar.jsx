@@ -2,7 +2,7 @@ import Channels from './Channels'
 import { Button } from 'react-bootstrap'
 import { useDispatch } from 'react-redux'
 import { useTranslation } from 'react-i18next'
-import { actions as modalsActions } from '../../store/modalsSlice'
+import { actions as modalsActions } from '../store/modalsSlice'
 
 const ChannelsSideBar = () => {
   const dispatch = useDispatch()

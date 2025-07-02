@@ -3,10 +3,10 @@ import { Form, Button } from 'react-bootstrap'
 import { useRef, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
-import getAuthHeader from '../../utils/auth'
+import getAuthHeader from '../utils/auth'
 import axios from 'axios'
 import { toast } from 'react-toastify'
-import profanityFilter from '../../utils/profanityFilter'
+import profanityFilter from '../utils/profanityFilter'
 import routes from '../routes/index'
 
 const FormForComment = () => {
@@ -59,6 +59,7 @@ const FormForComment = () => {
             type="text"
             name="body"
             required
+            autoComplete="off"
           />
           <Button
             type="submit"
