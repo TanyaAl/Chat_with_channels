@@ -1,5 +1,5 @@
 import { useFormik } from 'formik'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useRef, useEffect } from 'react'
 import getAuthHeader from '../../utils/auth'
 import axios from 'axios'
@@ -9,10 +9,12 @@ import { toast } from 'react-toastify'
 import profanityFilter from '../../utils/profanityFilter'
 import routes from '../../routes/index'
 import ModalTemplate from './ModalTemplate'
+import { actions as activeChannelActions } from '../../store/activeChannelSlice'
 
 const Add = ({ onClose }) => {
   const { channels } = useSelector(state => state.channelsReducer)
   const { t } = useTranslation()
+  const dispatch = useDispatch()
   const names = channels.map(channel => channel.name)
   const validationSchema = getChannelValidation(t, names)
   const inputEl = useRef(null)
@@ -32,9 +34,10 @@ const Add = ({ onClose }) => {
   const getSubmit = async (values) => {
     const newChannel = { name: profanityFilter.clean(values.name) }
     try {
-      await axios.post(routes.channelsPath(), newChannel, {
+      const response = await axios.post(routes.channelsPath(), newChannel, {
         headers: getAuthHeader(),
       })
+      dispatch(activeChannelActions.setActiveChannelId(response.data.id))
       toast.success(texts.toastSuccess)
       formik.resetForm()
       onClose()
