@@ -24,6 +24,7 @@ const Add = ({ onClose }) => {
     toastSuccess: t('toastify.addChannelSuccess'),
     toastError: t('network'),
     title: t('interface_texts.modals.addChannel'),
+    textLabel: t('interface_texts.modals.channelName'),
     textBtnDiscard: t('interface_texts.modals.btnDiscard'),
     textBtnConfirm: t('interface_texts.modals.btnSend'),
   }
