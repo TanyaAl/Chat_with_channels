@@ -1,7 +1,7 @@
 import { Modal, Form, FormGroup, FormControl, Button } from 'react-bootstrap'
 
 const ModalTemplate = (props) => {
-  const { formik, texts, getSubmit, onClose, isSubmitDisabled, showInput, inputEl } = props
+  const { formik, texts, getSubmit, onClose, isSubmitDisabled, showInput, inputEl, colorBtn } = props
 
   return (
     <Modal centered show onHide={onClose} backdrop={true} keyboard={true}>
@@ -50,7 +50,7 @@ const ModalTemplate = (props) => {
             </Button>
             <Button
               type="submit"
-              className="btn btn-primary mt-3"
+              className={`btn btn-${colorBtn} mt-3`}
               disabled={isSubmitDisabled}
             >
               {texts.textBtnConfirm}

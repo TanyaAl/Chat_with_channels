@@ -66,6 +66,7 @@ const Add = ({ onClose }) => {
         getSubmit={formik.handleSubmit}
         showInput={true}
         inputEl={inputEl}
+        colorBtn="primary"
       />
     </div>
   )

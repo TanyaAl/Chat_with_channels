@@ -42,6 +42,7 @@ const Remove = ({ data, onClose }) => {
         onClose={onClose}
         getSubmit={handleClick}
         showInput={false}
+        colorBtn="danger"
       />
     </div>
   )
