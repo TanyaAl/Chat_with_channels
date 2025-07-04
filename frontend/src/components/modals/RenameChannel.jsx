@@ -1,110 +1,72 @@
-import { useEffect, useRef } from 'react'
 import { useSelector } from 'react-redux'
 import { useFormik } from 'formik'
+import { useRef, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Modal, Form, FormGroup, FormControl, Button } from 'react-bootstrap'
 import { getChannelValidation } from '../../utils/validation'
 import { toast } from 'react-toastify'
 import profanityFilter from '../../utils/profanityFilter'
 import getAuthHeader from '../../utils/auth'
 import axios from 'axios'
 import routes from '../../routes'
+import ModalTemplate from './ModalTemplate'
 
 const Rename = ({ data, onClose }) => {
   const { t } = useTranslation()
   const { channels } = useSelector(state => state.channelsReducer)
   const names = channels.map(channel => channel.name)
   const validationSchema = getChannelValidation(t, names)
-
-  const formik = useFormik({
-    initialValues: { name: data.name, id: data.id },
-    validationSchema: validationSchema,
-
-    onSubmit: async (values) => {
-      try {
-        const checkValue = {
-          name: profanityFilter.clean(values.name),
-          id: data.id,
-        }
-        console.log(checkValue)
-        await axios.patch(`${routes.channelsPath()}${checkValue.id}`, {
-          headers: getAuthHeader(),
-        })
-        toast.success(t('toastify.renameChannelSuccess'))
-        onClose()
-      }
-      catch (error) {
-        console.error(`${t('network')}: ${error}`)
-        toast.error(t('network'))
-      }
-      finally {
-        formik.setSubmitting(false)
-      }
-    },
-  })
-
   const inputEl = useRef(null)
   useEffect(() => {
     inputEl.current.focus()
     inputEl.current.select()
   }, [])
 
+  const texts = {
+    toastSuccess: t('toastify.renameChannelSuccess'),
+    toastError: t('network'),
+    title: t('interface_texts.modals.renameChannel'),
+    textLabel: t('interface_texts.modals.channelName'),
+    textBtnDiscard: t('interface_texts.modals.btnDiscard'),
+    textBtnConfirm: t('interface_texts.modals.btnSend'),
+  }
+
+  const getSubmit = async (values) => {
+    try {
+      const checkValue = {
+        name: profanityFilter.clean(values.name),
+        id: data.id,
+      }
+      await axios.patch(`${routes.channelsPath()}/${checkValue.id}`, checkValue, {
+        headers: getAuthHeader(),
+      })
+      toast.success(texts.toastSuccess)
+      onClose()
+    }
+    catch (error) {
+      console.error(`${texts.toastError}: ${error}`)
+      toast.error(texts.toastError)
+    }
+  }
+
+  const formik = useFormik({
+    initialValues: { name: data.name, id: data.id },
+    validationSchema: validationSchema,
+    onSubmit: getSubmit,
+  })
+
   const isSubmitDisabled = formik.values.name.trim() === ''
 
   return (
     <div>
-      <Modal centered show onHide={onClose} backdrop={true} keyboard={true}>
-        <Modal.Header closeButton>
-          <Modal.Title>
-            {t('interface_texts.modals.renameChannel')}
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Form onSubmit={formik.handleSubmit}>
-            <FormGroup>
-              <FormControl
-                name="name"
-                id="name"
-                value={formik.values.name}
-                onChange={(e) => {
-                  formik.setFieldTouched('name', true, false)
-                  formik.handleChange(e)
-                }}
-                required
-                data-testid="input-name"
-                ref={inputEl}
-                onBlur={formik.handleBlur}
-                isInvalid={formik.errors.name}
-              />
-              <Form.Label htmlFor="name" className="visually-hidden">
-                {t('interface_texts.modals.channelName')}
-              </Form.Label>
-              {formik.errors.name
-                ? (
-                    <Form.Control.Feedback type="invalid">
-                      {formik.errors.name}
-                    </Form.Control.Feedback>
-                  )
-                : null}
-            </FormGroup>
-            <div className="d-flex justify-content-end">
-              <Button
-                onClick={() => onClose()}
-                className="btn btn-secondary me-3 mt-3"
-              >
-                {t('interface_texts.modals.btnDiscard')}
-              </Button>
-              <Button
-                type="submit"
-                className="btn btn-primary mt-3"
-                disabled={isSubmitDisabled}
-              >
-                {t('interface_texts.modals.btnSend')}
-              </Button>
-            </div>
-          </Form>
-        </Modal.Body>
-      </Modal>
+      <ModalTemplate
+        texts={texts}
+        formik={formik}
+        onClose={onClose}
+        isSubmitDisabled={isSubmitDisabled}
+        getSubmit={formik.handleSubmit}
+        showInput={true}
+        inputEl={inputEl}
+      />
     </div>
   )
 }

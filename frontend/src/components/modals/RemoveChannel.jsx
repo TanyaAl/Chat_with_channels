@@ -1,64 +1,48 @@
-import { Modal, Button } from 'react-bootstrap'
 import { useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import axios from 'axios'
 import getAuthHeader from '../../utils/auth'
 import { toast } from 'react-toastify'
 import routes from '../../routes/index'
+import ModalTemplate from './ModalTemplate'
 
 const Remove = ({ data, onClose }) => {
   const { channels } = useSelector(state => state.channelsReducer)
   const { t } = useTranslation()
   const channelToRemove = channels.find(channel => channel.id === data)
 
-  const handleClickRemove = async () => {
+  const texts = {
+    toastSuccess: t('toastify.removeChannelSuccess'),
+    toastError: t('network'),
+    title: t('interface_texts.modals.removeChannel'),
+    textBtnDiscard: t('interface_texts.modals.btnDiscard'),
+    textBtnConfirm: t('interface_texts.modals.btnRemove'),
+    areYouSure: t('interface_texts.modals.areYouSure'),
+  }
+
+  const handleClick = async (e) => {
+    e.preventDefault()
     try {
-      console.log(channelToRemove.id)
-      await axios.delete(`${routes.channelsPath()}${channelToRemove.id}`, {
+      await axios.delete(`${routes.channelsPath()}/${channelToRemove.id}`, {
         headers: getAuthHeader(),
       })
-      toast.success(t('toastify.removeChannelSuccess'))
+      toast.success(texts.toastSuccess)
       onClose()
     }
     catch (error) {
-      console.error(`${t('network')}: ${error}`)
-      toast.error(t('network'))
+      console.error(`${texts.toastError}: ${error}`)
+      toast.error(texts.toastError)
     }
   }
+
   return (
     <div>
-      <Modal centered show onHide={onClose} backdrop={true} keyboard={true}>
-        <Modal.Header closeButton>
-          <Modal.Title>
-            {t('interface_texts.modals.removeChannel')}
-            {' '}
-            {channelToRemove ? channelToRemove.name : ''}
-            ?
-            {' '}
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          {' '}
-          <div>
-            {t('interface_texts.modals.areYouSure')}
-          </div>
-          <div className="d-flex justify-content-end">
-            <Button
-              onClick={() => onClose()}
-              className="btn btn-secondary me-3 mt-3"
-            >
-              {t('interface_texts.modals.btnDiscard')}
-            </Button>
-            <Button
-              onClick={() => handleClickRemove()}
-              type="submit"
-              className="btn btn-danger mt-3"
-            >
-              {t('interface_texts.modals.btnRemove')}
-            </Button>
-          </div>
-        </Modal.Body>
-      </Modal>
+      <ModalTemplate
+        texts={texts}
+        onClose={onClose}
+        getSubmit={handleClick}
+        showInput={false}
+      />
     </div>
   )
 }

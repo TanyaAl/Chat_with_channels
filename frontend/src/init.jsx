@@ -9,14 +9,15 @@ import resources from './utils/locales/index'
 
 const init = () => {
   const socket = io()
+  socket.onAny((event, payload) => {
+    console.log(`📡 Событие от сервера: ${event}`, payload)
+  })
   socket.on('newMessage', (payload) => {
     console.log('payload received from server for adding message:', payload)
-
     store.dispatch(messagesActions.addMessage(payload))
   })
   socket.on('newChannel', (payload) => {
     console.log('payload received from server for adding channel:', payload)
-
     store.dispatch(channelsActions.addChannel(payload))
   })
   socket.on('removeChannel', (payload) => {
@@ -31,7 +32,6 @@ const init = () => {
   })
   socket.on('renameChannel', (payload) => {
     console.log('payload received from server for renaming:', payload)
-
     store.dispatch(channelsActions.renameChannel(payload))
   })
   return { socket }
