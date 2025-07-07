@@ -13,7 +13,6 @@ const init = () => {
     store.dispatch(messagesActions.addMessage(payload))
   })
   socket.on('newChannel', (payload) => {
-    console.log('NEWCHANNEL', payload)
     store.dispatch(channelsActions.addChannel(payload))
   })
   socket.on('removeChannel', (payload) => {

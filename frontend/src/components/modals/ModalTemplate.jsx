@@ -2,7 +2,7 @@ import { Modal, Form, FormGroup, FormControl, Button } from 'react-bootstrap'
 
 const ModalTemplate = (props) => {
   const { formik, texts, getSubmit, onClose, isSubmitDisabled, showInput, inputEl, colorBtn } = props
-
+  console.log('NAME', formik.values.name)
   return (
     <Modal centered show onHide={onClose} backdrop={true} keyboard={true}>
       <Modal.Header closeButton>
@@ -19,7 +19,7 @@ const ModalTemplate = (props) => {
                     name="name"
                     id="name"
                     value={formik.values.name}
-                    autocomplete="off"
+                    autoComplete="off"
                     onChange={(e) => {
                       formik.handleChange(e)
                     }}

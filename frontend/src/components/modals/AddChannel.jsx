@@ -58,7 +58,8 @@ const Add = ({ onClose }) => {
   })
 
   const isSubmitDisabled = formik.values.name.trim() === ''
-
+  console.log(isSubmitDisabled)
+  console.log(formik.errors)
   return (
     <div>
       <ModalTemplate
