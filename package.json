@@ -6,7 +6,9 @@
   "type": "module",
   "scripts": {
     "test": "echo \"No tests yet\" && exit 0",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "build": "vite build",
+    "dev": "vite",
   },
   "author": "Tanya",
   "license": "ISC",

@@ -2,6 +2,8 @@ import { Modal, Form, FormGroup, FormControl, Button } from 'react-bootstrap'
 
 const ModalTemplate = (props) => {
   const { formik, texts, getSubmit, onClose, isSubmitDisabled, showInput, inputEl, colorBtn } = props
+  console.log('formik in ModalTemplate:', formik)
+
   return (
     <Modal centered show onHide={onClose} backdrop={true} keyboard={true}>
       <Modal.Header closeButton>
