@@ -11,7 +11,7 @@ const Messages = ({ messagesBoxRef }) => {
   )
   useEffect(() => {
     messagesBoxRef.current.scrollTop = messagesBoxRef.current.scrollHeight
-  }, [messages, activeChannel])
+  }, [currentMessages, activeChannel])
 
   if (messages.length > 0) {
     return (

@@ -19,6 +19,7 @@ const ModalTemplate = (props) => {
                     name="name"
                     id="name"
                     value={formik.values.name}
+                    autocomplete="off"
                     onChange={(e) => {
                       formik.handleChange(e)
                     }}
