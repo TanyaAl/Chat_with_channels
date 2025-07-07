@@ -7,8 +7,8 @@
   "scripts": {
     "test": "echo \"No tests yet\" && exit 0",
     "lint": "eslint .",
-    "build": "vite build",
-    "dev": "vite"
+    "build": "cd frontend && npm run build",
+    "dev": "cd frontend && npm run dev"
   },
   "author": "Tanya",
   "license": "ISC",
