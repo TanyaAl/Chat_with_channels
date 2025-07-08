@@ -14,6 +14,11 @@ import { actions as activeChannelActions } from '../../store/activeChannelSlice'
 const Add = ({ onClose }) => {
   const { channels } = useSelector(state => state.channelsReducer)
   console.log('CHANNELS', channels)
+  channels.forEach((channel, i) => {
+    if (!channel) {
+      console.log(`channel[${i}] is undefined or null`, channels)
+    }
+  })
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const names = channels.map(channel => channel.name)

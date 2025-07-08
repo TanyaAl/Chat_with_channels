@@ -9,6 +9,7 @@ const channelsSlice = createSlice({
       state.channels = payload
     },
     addChannel(state, { payload }) {
+      console.log('ADDPAYLOAD', payload)
       state.channels.push(payload)
     },
     removeChannel(state, { payload }) {
