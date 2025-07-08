@@ -18,7 +18,7 @@ const ChatHeader = () => {
       <p className="m-0">
         <b>
           #
-          {activeTitle.name}
+          {activeTitle?.name}
         </b>
       </p>
       <span className="text-muted">
