@@ -14,11 +14,7 @@ import { actions as activeChannelActions } from '../../store/activeChannelSlice'
 const Add = ({ onClose }) => {
   const { channels } = useSelector(state => state.channelsReducer)
   console.log('CHANNELS', channels)
-  channels.forEach((channel, i) => {
-    if (!channel) {
-      console.log(`channel[${i}] is undefined or null`, channels)
-    }
-  })
+
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const names = channels.map(channel => channel.name)
@@ -38,8 +34,9 @@ const Add = ({ onClose }) => {
   }
 
   const getSubmit = async (values) => {
-    const newChannel = { name: profanityFilter.clean(values.name) }
-    console.log('NEWCHANNEL', newChannel)
+    const newName = profanityFilter.clean(values.name)
+    const newChannel = { name: newName }
+    console.log('NEWCHANNEL', newChannel.name)
     try {
       const response = await axios.post(routes.channelsPath(), newChannel, {
         headers: getAuthHeader(),
