@@ -34,8 +34,7 @@ const Add = ({ onClose }) => {
   }
 
   const getSubmit = async (values) => {
-    const newName = profanityFilter.clean(values.name)
-    const newChannel = { name: newName }
+    const newChannel = { name: profanityFilter.clean(values.name) }
     console.log('NEWCHANNEL', newChannel.name)
     try {
       const response = await axios.post(routes.channelsPath(), newChannel, {
