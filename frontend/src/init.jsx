@@ -15,6 +15,7 @@ const init = () => {
   socket.on('newChannel', (payload) => {
     console.log('SOCKETADD', payload)
     store.dispatch(channelsActions.addChannel(payload))
+    console.log(store.getState())
   })
   socket.on('removeChannel', (payload) => {
     const { id } = payload
