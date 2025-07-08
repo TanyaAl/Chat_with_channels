@@ -14,9 +14,10 @@ import { Provider as RollbarProvider, ErrorBoundary } from '@rollbar/react'
 const { socket } = init()
 
 const rollbarConfig = {
-  accessToken: 'REACT_APP_ROLLBAR_TOKEN',
+  accessToken: import.meta.env.VITE_ROLLBAR_TOKEN,
   environment: 'prod',
 }
+console.log('Rollbar token:', import.meta.env.VITE_ROLLBAR_TOKEN)
 
 createRoot(document.getElementById('root')).render(
   <RollbarProvider config={rollbarConfig}>
@@ -39,7 +40,6 @@ createRoot(document.getElementById('root')).render(
           />
         </I18nextProvider>
       </Provider>
-      ,
     </ErrorBoundary>
   </RollbarProvider>,
 )
