@@ -35,7 +35,7 @@ const Channel = ({ channel }) => {
         <span className="me-1">
           #
         </span>
-        {channel.name ? channel.name : 'noName'}
+        {channel.name}
       </Button>
       {channel.removable === true && (
         <Menu className={classToggle} channel={channel} />
