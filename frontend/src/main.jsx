@@ -17,8 +17,6 @@ const rollbarConfig = {
   accessToken: import.meta.env.VITE_ROLLBAR_TOKEN,
   environment: import.meta.env.MODE,
 }
-console.log('Rollbar token:', import.meta.env.VITE_ROLLBAR_TOKEN)
-console.log('RollbarEnv:', import.meta.env.MODE)
 
 createRoot(document.getElementById('root')).render(
   <RollbarProvider config={rollbarConfig}>
