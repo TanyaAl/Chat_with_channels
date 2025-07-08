@@ -22,7 +22,7 @@ const ChannelsSideBar = () => {
           type="button"
           className="p-0 text-primary"
           variant="group-vertical outline-light"
-          aria-label={t('interface_texts.modals.addchannel')}
+          aria-label={t('interface_texts.modals.addChannel')}
         >
           <i className="bi bi-plus-square" aria-hidden="true"></i>
           <span className="visually-hidden">

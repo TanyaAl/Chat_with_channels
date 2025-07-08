@@ -38,7 +38,7 @@ i18next.use(initReactI18next).init({
   interpolation: {
     escapeValue: false,
   },
-  debug: true,
+  debug: false,
 })
 
 export { init, i18next }

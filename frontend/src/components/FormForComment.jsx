@@ -65,12 +65,12 @@ const FormForComment = () => {
             type="submit"
             disabled={isSubmitDisabled}
             className="btn-group-vertical"
-            aria-label={t('interface_texts.forms.newMesage')}
+            aria-label={t('interface_texts.forms.newMessage')}
             variant="outline-primary"
           >
             <i className="bi bi-send"></i>
             <span className="visually-hidden">
-              {t('interface_texts.forms.newMesage')}
+              {t('interface_texts.forms.newMessage')}
             </span>
           </Button>
         </div>
