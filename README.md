@@ -6,4 +6,6 @@
 
 [![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=TanyaAl_frontend-project-12&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=TanyaAl_frontend-project-12)
 
-[Render](https://frontend-project-12-97jv.onrender.com)
+A real-time application built with React/Redux, using AJAX, REST, and WebSockets. Implemented with React (hooks) + Redux (@reduxjs/toolkit) + Formik. Supports creating, renaming, and deleting channels.
+
+[Try chat](https://frontend-project-12-97jv.onrender.com)
